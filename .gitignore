@@ -1,0 +1,20 @@
+# Xcode build output
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Build products
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# DMG (distribute via GitHub Releases, not repo)
+*.dmg
+
+# Claude Code settings
+.claude/
+
+# macOS
+.DS_Store

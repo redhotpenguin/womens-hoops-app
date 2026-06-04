@@ -1,0 +1,70 @@
+import Foundation
+
+struct ESPNScoreboardResponse: Codable {
+    let events: [ESPNEvent]
+}
+
+struct ESPNEvent: Codable {
+    let id: String
+    let date: String
+    let name: String
+    let shortName: String
+    let competitions: [ESPNCompetition]
+}
+
+struct ESPNCompetition: Codable {
+    let venue: ESPNVenue?
+    let competitors: [ESPNCompetitor]
+    let broadcasts: [ESPNBroadcast]?
+    let status: ESPNStatus
+}
+
+struct ESPNVenue: Codable {
+    let fullName: String
+    let address: ESPNAddress?
+}
+
+struct ESPNAddress: Codable {
+    let city: String?
+    let state: String?
+}
+
+struct ESPNCompetitor: Codable {
+    let homeAway: String
+    let team: ESPNTeam
+    let score: String?
+}
+
+struct ESPNTeam: Codable {
+    let id: String?
+    let displayName: String
+    let abbreviation: String
+    let color: String?
+    let alternateColor: String?
+    let logo: String?
+}
+
+struct ESPNBroadcast: Codable {
+    let names: [String]
+    let market: String?
+
+    enum CodingKeys: String, CodingKey {
+        case names
+        case market
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.names = (try? container.decode([String].self, forKey: .names)) ?? []
+        self.market = try? container.decode(String.self, forKey: .market)
+    }
+}
+
+struct ESPNStatus: Codable {
+    let type: ESPNStatusType
+}
+
+struct ESPNStatusType: Codable {
+    let name: String
+    let completed: Bool
+}
