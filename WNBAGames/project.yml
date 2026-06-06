@@ -3,14 +3,13 @@ options:
   bundleIdPrefix: com.phred
   deploymentTarget:
     macOS: "13.0"
+    iOS: "16.0"
   xcodeVersion: "16.0"
   createIntermediateGroups: true
 
 settings:
   base:
     SWIFT_VERSION: "5.9"
-    MACOSX_DEPLOYMENT_TARGET: "13.0"
-    ENABLE_HARDENED_RUNTIME: YES
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: ""
 
@@ -29,8 +28,37 @@ targets:
         LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
         SWIFT_EMIT_LOC_STRINGS: YES
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+        ENABLE_HARDENED_RUNTIME: YES
     entitlements:
       path: WNBAGames/WNBAGames.entitlements
       properties:
         com.apple.security.app-sandbox: true
         com.apple.security.network.client: true
+
+  WNBAGamesIOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: WNBAGames/Models
+        createIntermediateGroups: true
+      - path: WNBAGames/Services
+        createIntermediateGroups: true
+      - path: WNBAGames/ViewModels
+        createIntermediateGroups: true
+      - path: WNBAGames/Extensions
+        createIntermediateGroups: true
+      - path: WNBAGames/Views/GameRowView.swift
+      - path: WNBAGames/Views/EmptyStateView.swift
+      - path: WNBAGames/Views/NetworkBadgeView.swift
+      - WNBAGamesIOS
+    settings:
+      base:
+        PRODUCT_NAME: WNBAGamesIOS
+        PRODUCT_BUNDLE_IDENTIFIER: com.phred.WNBAGamesIOS
+        INFOPLIST_FILE: WNBAGamesIOS/Info.plist
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        SWIFT_EMIT_LOC_STRINGS: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks"
+        CODE_SIGN_STYLE: Automatic

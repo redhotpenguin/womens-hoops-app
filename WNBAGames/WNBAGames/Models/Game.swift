@@ -34,6 +34,26 @@ struct Team: Identifiable {
     let displayName: String
     let abbreviation: String
     let primaryColor: Color?
+
+    var websiteURL: URL? {
+        let subdomain: String? = switch abbreviation {
+        case "ATL": "dream"
+        case "CHI": "sky"
+        case "CON": "sun"
+        case "DAL": "wings"
+        case "GS":  "valkyries"
+        case "IND": "fever"
+        case "LV":  "aces"
+        case "LA":  "sparks"
+        case "MIN": "lynx"
+        case "NY":  "liberty"
+        case "PHX": "mercury"
+        case "SEA": "storm"
+        case "WSH": "mystics"
+        default:    nil
+        }
+        return subdomain.flatMap { URL(string: "https://\($0).wnba.com") }
+    }
 }
 
 enum GameStatus: Equatable {

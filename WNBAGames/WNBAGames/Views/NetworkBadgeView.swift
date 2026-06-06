@@ -1,5 +1,7 @@
 import SwiftUI
+#if os(macOS)
 import AppKit
+#endif
 
 struct NetworkBadgeView: View {
     let network: BroadcastNetwork
@@ -18,9 +20,11 @@ struct NetworkBadgeView: View {
                     ? "Watch on \(network.displayName) · available on Apple TV"
                     : "Watch on \(network.displayName)"
             )
+            #if os(macOS)
             .onHover { hovering in
                 if hovering { NSCursor.pointingHand.push() } else { NSCursor.pop() }
             }
+            #endif
         } else {
             pill.help(network.displayName)
         }

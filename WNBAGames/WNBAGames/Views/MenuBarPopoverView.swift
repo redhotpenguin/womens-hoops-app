@@ -18,7 +18,7 @@ struct MenuBarPopoverView: View {
             VStack(alignment: .leading, spacing: 1) {
                 Text("WNBA Games")
                     .font(.headline)
-                Text("Next 10 scheduled games")
+                Text("Next 2 weeks of games")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -36,6 +36,14 @@ struct MenuBarPopoverView: View {
             }
             .buttonStyle(.plain)
             .disabled(viewModel.loadingState == .loading)
+
+            Button {
+                NSApplication.shared.terminate(nil)
+            } label: {
+                Image(systemName: "power")
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.secondary)
         }
         .padding(.horizontal, 14)
         .padding(.vertical, 10)

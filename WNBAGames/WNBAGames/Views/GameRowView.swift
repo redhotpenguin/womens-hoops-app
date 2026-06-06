@@ -1,7 +1,16 @@
 import SwiftUI
+#if os(macOS)
+import AppKit
+#endif
 
 struct GameRowView: View {
     let game: Game
+
+    private var gsColor: Color? {
+        if game.homeTeam.abbreviation == "GS" { return game.homeTeam.primaryColor }
+        if game.awayTeam.abbreviation == "GS" { return game.awayTeam.primaryColor }
+        return nil
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -42,13 +51,33 @@ struct GameRowView: View {
             }
         }
         .padding(.vertical, 6)
+        .background {
+            if let color = gsColor {
+                color.opacity(0.25)
+            }
+        }
     }
 }
 
 private struct TeamLabel: View {
     let team: Team
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
+        if let url = team.websiteURL {
+            Button { openURL(url) } label: { chip }
+                .buttonStyle(.plain)
+                #if os(macOS)
+                .onHover { hovering in
+                    if hovering { NSCursor.pointingHand.push() } else { NSCursor.pop() }
+                }
+                #endif
+        } else {
+            chip
+        }
+    }
+
+    private var chip: some View {
         HStack(spacing: 5) {
             Circle()
                 .fill(team.primaryColor ?? Color.secondary.opacity(0.5))

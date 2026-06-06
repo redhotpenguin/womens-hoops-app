@@ -22,7 +22,7 @@ final class GamesViewModel: ObservableObject {
         guard loadingState != .loading else { return }
         loadingState = .loading
         do {
-            let fetched = try await service.fetchUpcomingGames(limit: 10)
+            let fetched = try await service.fetchUpcomingGames(limit: 100)
             games = fetched
             loadingState = .loaded
         } catch {
