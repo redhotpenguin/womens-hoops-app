@@ -1,267 +1,220 @@
-# WNBA Games Mac Menu Bar App — Implementation Plan
+# iOS App: App Store Resubmission Plan
 
 ## Context
 
-Build a macOS menu bar application in Swift/SwiftUI that shows the next 10 upcoming WNBA games and where to watch them. The app lives as a compact popover attached to a basketball icon in the menu bar — no Dock icon, no full window. It fetches data from ESPN's public (unofficial, no-key) JSON API.
+The iOS target (`WNBAGames/WNBAGamesIOS/`) shares views with the macOS menu-bar app. The iOS build was **rejected by Apple under Guideline 4.2 (Minimum Functionality)** — the reviewer felt it was a thin wrapper around the list. This plan addresses two things in one pass:
 
-**Key decisions:**
-- Menu bar only (no window scene, no Dock icon)
-- Broadcast badges are display-only (no click action in v1; clicking to open streaming site is a planned next step)
-- Teams shown as colored dot + abbreviation (no logo image fetching)
-- No third-party dependencies — pure Swift/Foundation/SwiftUI
+1. The originally requested polish items (header, venue links, UTM, TZ, Watch Online/Nearby).
+2. A meaningful expansion of app-like surface area (tabs, standings, detail pages, notifications, widget) to clear the 4.2 bar.
 
----
+iOS-only unless noted. macOS menu-bar UI must not regress; shared-file edits stay backward-compatible.
 
-## Data Source
-
-**ESPN public scoreboard API** (no API key required):
-```
-https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard?dates=YYYYMMDD-YYYYMMDD&groups=100
-```
-
-Query a 45-day window from today, filter to future games only, take the first 10 sorted by date.
-
-**Broadcast networks for 2026 season:** ABC, ESPN, ESPN+, Amazon Prime Video, CBS, ION, NBC, Peacock, USA Network, NBA TV, WNBA League Pass
-
-**Apple TV app availability:**
-- ✅ Amazon Prime Video
-- ✅ ESPN / ESPN+
-- ✅ Peacock
-- ✅ CBS / Paramount+
-- ✅ NBA TV
-- ✅ ABC (via ESPN app)
-- ❌ ION (not confirmed on Apple TV)
-- ❌ USA Network (not confirmed on Apple TV)
+Design decisions captured up-front:
+- Buttons live **per-game row**, replacing the network badges area on iOS.
+- Venue tap opens **Apple Maps** via native URL scheme.
+- Timezone abbreviation reflects **the user's local TZ**.
 
 ---
 
-## Project Structure
+## Part A — Original polish items
 
-```
-WNBAGames/                          ← Xcode project root
-├── WNBAGames.xcodeproj/
-└── WNBAGames/
-    ├── WNBAGamesApp.swift          ← App entry: MenuBarExtra scene only
-    ├── Models/
-    │   ├── ESPNResponse.swift      ← Codable structs mirroring ESPN JSON
-    │   ├── Game.swift              ← Domain model (mapped from ESPN)
-    │   └── BroadcastNetwork.swift  ← Enum: known networks + metadata
-    ├── Services/
-    │   └── ESPNService.swift       ← async fetch → decode → map to [Game]
-    ├── ViewModels/
-    │   └── GamesViewModel.swift    ← @MainActor ObservableObject, drives all views
-    ├── Views/
-    │   ├── MenuBarPopoverView.swift ← Root popover view
-    │   ├── GameRowView.swift        ← Single game row
-    │   ├── NetworkBadgeView.swift   ← Colored pill badge for one broadcast network
-    │   └── EmptyStateView.swift     ← Loading / error / no-games states
-    └── Extensions/
-        └── Color+Hex.swift          ← Parse ESPN's hex color strings
-```
+### A1. "Upcoming 2 weeks of games" header (iOS)
 
-**Xcode project settings:**
-- macOS deployment target: **13.0** (Ventura) — minimum for `MenuBarExtra` SwiftUI API
-- App Sandbox: enabled; Outbound network connections: YES
-- `LSUIElement = YES` in Info.plist (suppresses Dock icon)
-- No third-party Swift packages
-
----
-
-## File Details
-
-### `WNBAGamesApp.swift`
-Declares only a `MenuBarExtra` scene (`.window` style gives a SwiftUI popover). `LSUIElement` in Info.plist hides the app from the Dock.
+In `WNBAGamesIOS/GamesListView.swift`, wrap the loaded `List` in a `Section` with header:
 
 ```swift
-@main
-struct WNBAGamesApp: App {
-    var body: some Scene {
-        MenuBarExtra("WNBA", systemImage: "basketball.fill") {
-            MenuBarPopoverView()
+List {
+    Section {
+        ForEach(viewModel.games) { game in
+            NavigationLink { GameDetailView(game: game) } label: {
+                GameRowView(game: game)
+            }
         }
-        .menuBarExtraStyle(.window)
+    } header: {
+        Text("Upcoming 2 weeks of games")
+            .font(.subheadline)
+            .textCase(nil)
     }
 }
 ```
 
----
+(Row is now a NavigationLink — see A5/B2.)
 
-### `Models/ESPNResponse.swift`
-Pure Codable structs that mirror the ESPN JSON tree. No business logic here.
+### A2. Timezone next to time (shared)
 
-```
-ESPNScoreboardResponse
-  └── events: [ESPNEvent]
-        ├── id: String
-        ├── date: String  (ISO8601, UTC)
-        ├── name: String
-        └── competitions: [ESPNCompetition]
-              ├── competitors: [ESPNCompetitor]
-              │     ├── homeAway: String  ("home" | "away")
-              │     └── team: ESPNTeam
-              │           ├── displayName, abbreviation
-              │           ├── color: String  (hex, no #)
-              │           └── logo: String  (URL)
-              ├── broadcasts: [ESPNBroadcast]
-              │     ├── names: [String]
-              │     └── market: String
-              ├── venue: ESPNVenue
-              │     ├── fullName: String
-              │     └── address: { city, state }
-              └── status.type.name: String  ("STATUS_SCHEDULED", etc.)
-```
-
----
-
-### `Models/Game.swift`
-Domain model decoupled from ESPN API shape.
+In `WNBAGames/Models/Game.swift`, modify `formattedTime`:
 
 ```swift
-struct Game: Identifiable {
-    let id: String
-    let date: Date
-    let homeTeam: Team
-    let awayTeam: Team
-    let venueName: String?
-    let venueCity: String?
-    let networks: [BroadcastNetwork]
-    let status: GameStatus  // .scheduled | .inProgress | .final_ | .postponed
-
-    var isUpcoming: Bool { status == .scheduled && date > Date() }
-    var formattedDate: String  // "Sat, May 10" in local timezone
-    var formattedTime: String  // "7:00 PM" in local timezone
-}
-
-struct Team: Identifiable {
-    let id: String
-    let displayName: String
-    let abbreviation: String
-    let primaryColor: Color?   // parsed from ESPN hex
+var formattedTime: String {
+    let f = DateFormatter()
+    f.timeStyle = .short
+    f.timeZone = .current
+    let time = f.string(from: date)
+    let tz = TimeZone.current.abbreviation(for: date) ?? ""
+    return tz.isEmpty ? time : "\(time) \(tz)"
 }
 ```
 
----
+Additive — macOS popover also gains the suffix.
 
-### `Models/BroadcastNetwork.swift`
-Enum of all known 2026 WNBA broadcast partners.
+### A3. UTM parameter on outbound links (shared)
+
+In `WNBAGames/Models/BroadcastNetwork.swift`, route every URL through:
 
 ```swift
-enum BroadcastNetwork: String, CaseIterable {
-    case espn, espnPlus, abc, amazonPrime, cbs, ion, nbc,
-         peacock, usaNetwork, nbaTV, wnbaLeaguePass, unknown
+private func tagged(_ s: String) -> URL? {
+    guard var c = URLComponents(string: s) else { return nil }
+    var items = c.queryItems ?? []
+    items.append(URLQueryItem(name: "utm_source", value: "wnba_games_app_ios"))
+    c.queryItems = items
+    return c.url
 }
 ```
 
-Each case provides:
-- `from(apiName:)` — fuzzy-match raw API string ("Prime Video", "ESPN+", etc.) to enum case
-- `displayName` — short label shown in badge (e.g. "Prime Video", "ESPN+")
-- `hasAppleTVApp: Bool` — drives the Apple TV icon in the badge
-- `brandColor: Color` — badge tint (ESPN red, Prime teal, etc.)
-- `watchURL: URL?` — streaming URL (used in the planned v2 click-to-open feature)
+Apply in every `watchURL` case. Single chokepoint for badges, Watch Online page, and any future link.
+
+### A4. Venue link → Apple Maps (iOS only)
+
+In `WNBAGames/Views/GameRowView.swift`, gate the venue tap behind `#if os(iOS)` so macOS behavior is unchanged. Builds `http://maps.apple.com/?q=<venue>,<city>` URL-encoded and opens with `@Environment(\.openURL)`.
+
+### A5. Watch Online button + page (per row, iOS only)
+
+`GameRowView` on iOS replaces the network badges HStack with two pill buttons sized to match `NetworkBadgeView` styling. New file `WNBAGamesIOS/WatchOnlineView.swift`:
+- Takes `Game`.
+- Lists `game.networks` as styled list rows (reuse `NetworkBadgeView` or a row variant).
+- Each row taps to the UTM-tagged `watchURL`.
+- Empty state: "No online broadcasts announced for this game."
+
+### A6. Watch Nearby button + page (per row, iOS only)
+
+New file `WNBAGamesIOS/WatchNearbyView.swift`:
+- `CLLocationManager.requestWhenInUseAuthorization()` on appear.
+- `MKLocalSearch` with `naturalLanguageQuery = "sports bar"`, region ~5 km around user.
+- Sort by distance, take top 5; show name, address, distance.
+- Tap row → `mapItem.openInMaps()`.
+- States: not-determined CTA, denied (settings deep link), no results.
+
+Add to `WNBAGamesIOS/Info.plist`:
+```xml
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We use your location to find sports bars near you that are showing the game.</string>
+```
 
 ---
 
-### `Services/ESPNService.swift`
-A Swift `actor` with one public method:
+## Part B — App Store 4.2 resubmission expansion
+
+### B1. Tab bar navigation (iOS root)
+
+Replace the single `GamesListView` root in `WNBAGamesIOSApp.swift` with a `TabView`:
 
 ```swift
-func fetchUpcomingGames(limit: Int = 10) async throws -> [Game]
+TabView {
+    GamesListView()
+        .tabItem { Label("Games", systemImage: "basketball") }
+    StandingsView()
+        .tabItem { Label("Standings", systemImage: "list.number") }
+    SettingsView()
+        .tabItem { Label("Settings", systemImage: "gear") }
+}
 ```
 
-Steps:
-1. Build URL with 45-day date range starting today
-2. `URLSession.data(from:)` with 15s timeout
-3. `JSONDecoder` → `ESPNScoreboardResponse`
-4. `compactMap` each event through mapping (returns nil if date parse fails)
-5. Filter `.isUpcoming`, sort by date, take first `limit`
+Three tabs is the minimum "real app" shape; cheap and high-signal for review.
 
-Error type: `ESPNServiceError` (.invalidURL, .networkError(Error), .decodingError(Error))
+### B2. Game detail page (iOS)
 
----
+New file `WNBAGamesIOS/GameDetailView.swift`. Each list row becomes a `NavigationLink` into this view. Contents:
+- Header: matchup, date+time+TZ, venue (Apple Maps link).
+- Status section: scheduled / in-progress (live score, quarter, time remaining) / final (final score).
+- Broadcasts section: list of networks with tap-through.
+- Box score section (final games only): pulled from ESPN summary endpoint.
+- Action row: "Notify me 1 hour before" (B5), "Add to Calendar" (deferred — see TODO).
+- Watch Online and Watch Nearby links (already from A5/A6) move here as full-width buttons; the row in the list can keep compact buttons or just show NavigationLink chevron.
 
-### `ViewModels/GamesViewModel.swift`
-`@MainActor final class` conforming to `ObservableObject`.
+ESPN summary endpoint: `https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/summary?event=<gameId>`. Add a method to `ESPNService` returning a `GameSummary` struct (boxscore + status). Polled every ~30s when the detail view is visible and the game is live.
 
-```swift
-@Published var games: [Game] = []
-@Published var loadingState: LoadingState = .idle
+### B3. Standings tab (iOS)
 
-enum LoadingState { case idle, loading, loaded, error(String) }
+New files `WNBAGamesIOS/StandingsView.swift` and shared `WNBAGames/Models/Standing.swift`. ESPN endpoint:
+`https://site.api.espn.com/apis/v2/sports/basketball/wnba/standings`
 
-func refresh() { Task { await loadGames() } }
-```
+Display two conferences (Eastern / Western) as sections, with columns: Team, W, L, PCT, GB. Tap a row → `TeamDetailView` (B4).
 
----
+Add a `fetchStandings()` method to `ESPNService` mirroring the games fetch pattern. Use a `StandingsViewModel` matching the shape of `GamesViewModel` (idle/loading/loaded/error).
 
-### `Views/MenuBarPopoverView.swift`
-Frame: `width: 360, height: 480`.
+### B4. Team detail page (iOS)
 
-Layout:
-```
-┌─────────────────────────────────────────┐
-│ WNBA Games                   [Refresh]  │
-├─────────────────────────────────────────┤
-│ IND @ NY          Sat, May 10  7:00 PM  │
-│ Barclays Center        [ESPN] [▶ Prime] │
-├─────────────────────────────────────────┤
-│ SEA @ LV          Sun, May 11  9:00 PM  │
-│ Michelob Ultra Arena            [ION]   │
-├─────────────────────────────────────────┤
-│  ... 8 more rows                        │
-└─────────────────────────────────────────┘
-```
+New file `WNBAGamesIOS/TeamDetailView.swift`. Inputs: a `Team` (already in the model). Contents:
+- Header: team name, logo (if exposed by ESPN), record (from standings cache).
+- Upcoming games: filter `viewModel.games` where home or away matches.
+- Recent results: a small extra fetch for last 5 games (ESPN scoreboard with `dates=` past window), or stash from standings team schedule endpoint.
 
-Switches on `loadingState` to show `ProgressView`, error + retry button, or scrollable game list.
-Uses `.task { await viewModel.loadGames() }` on appear.
+Reuse `GameRowView` for the lists.
 
----
+### B5. Local notifications: "remind me before tip-off"
 
-### `Views/GameRowView.swift`
-Each row:
-- **Line 1:** `[● IND]  @  [● NY]` — colored dot + abbreviation for each team, date/time right-aligned
-- **Line 2:** venue name (tertiary) on left, network badges flush right
+In `GameDetailView`, add a toggle row "Remind me 1 hour before". Uses `UNUserNotificationCenter`:
+- Request `.alert, .sound` authorization on first toggle.
+- Schedule a `UNCalendarNotificationTrigger` for `game.date - 1h`.
+- Cancel scheduled notification on toggle off.
+- Persist enabled game IDs in `UserDefaults` so the toggle state survives launches.
 
----
+No background fetch, no server — fully local. Add to `Info.plist` only if needed for entitlements (basic local notifs don't require additional plist keys).
 
-### `Views/NetworkBadgeView.swift`
-Capsule pill badge per network. Shows an `appletv.fill` SF Symbol if `network.hasAppleTVApp`, then `network.displayName`. Styled with `network.brandColor` at 15% opacity fill and 40% opacity border. Tooltip via `.help(...)` describes where to watch.
+### B6. Home Screen widget
 
-**No tap/click action in v1.**
+New widget extension target `WNBAGamesWidget`:
+- `IntentTimelineProvider` (or `TimelineProvider`) that fetches the next upcoming game from ESPN.
+- Small + medium widget families: matchup, date/time/TZ, network logo.
+- Tap deep-links into the app (URL scheme registered in Info.plist).
+- Refresh every ~1 hour.
+
+This is a meaningful App Store signal — Apple's review explicitly weighs widget presence as "app-like."
+
+`project.yml` will need a new target entry. After adding, regenerate the Xcode project with `xcodegen generate`.
 
 ---
 
-### `Extensions/Color+Hex.swift`
-Parses ESPN's 6-character hex color strings (e.g. `"041E42"`) into SwiftUI `Color` values.
+## Critical files
+
+**Modified (shared):**
+- `WNBAGames/Models/Game.swift` — TZ-abbrev in `formattedTime`
+- `WNBAGames/Models/BroadcastNetwork.swift` — UTM helper applied in `watchURL`
+- `WNBAGames/Views/GameRowView.swift` — iOS-gated venue link + iOS-gated Watch Online/Nearby buttons
+- `WNBAGames/Services/ESPNService.swift` — new `fetchStandings()`, `fetchGameSummary(eventId:)`
+
+**Modified (iOS):**
+- `WNBAGamesIOS/WNBAGamesIOSApp.swift` — TabView root
+- `WNBAGamesIOS/GamesListView.swift` — header section, NavigationLink rows
+- `WNBAGamesIOS/Info.plist` — `NSLocationWhenInUseUsageDescription`, widget URL scheme
+- `project.yml` — widget target, regen with `xcodegen generate`
+
+**New (iOS):**
+- `WNBAGamesIOS/WatchOnlineView.swift`
+- `WNBAGamesIOS/WatchNearbyView.swift`
+- `WNBAGamesIOS/GameDetailView.swift`
+- `WNBAGamesIOS/StandingsView.swift`
+- `WNBAGamesIOS/TeamDetailView.swift`
+- `WNBAGamesIOS/SettingsView.swift` (minimal: app version, about, link to Apple Maps for HQ-ish, attributions)
+- `WNBAGames/Models/Standing.swift` (shared model, harmless on macOS)
+- `WNBAGames/ViewModels/StandingsViewModel.swift`
+- Widget extension target: `WNBAGamesWidget/` (provider, entry view, bundle)
 
 ---
 
-## Error Handling
+## Verification
 
-| Scenario | Behavior |
-|---|---|
-| No network | `networkError` → EmptyStateView with retry button |
-| ESPN API down / bad response | `decodingError` → EmptyStateView with retry button |
-| API schema changes | `compactMap` in mapping silently drops malformed events |
-| 0 upcoming games in 45-day window | `.loaded` with empty array → "No upcoming games" empty state |
-| Date parse fails on one event | That event is silently skipped |
-
----
-
-## Verification Steps
-
-1. Create Xcode project (macOS App, SwiftUI, App Sandbox on, Outbound Connections entitlement, `LSUIElement=YES` in Info.plist)
-2. Add all Swift files per the structure above
-3. Build & run — basketball icon appears in menu bar; click opens popover
-4. Verify games load within ~2s on a network connection
-5. Check broadcast badges — correct colors, Apple TV icon on Prime/ESPN/Peacock/CBS rows
-6. Test edge cases:
-   - Airplane mode → error state + retry button works
-   - Refresh button → spinner shows, list reloads
-
----
-
-## Planned Next Steps (not in v1)
-
-1. **Badge click → open streaming site** — `onTapGesture { openURL(network.watchURL) }` in `NetworkBadgeView`
-2. Auto-refresh timer (5-minute interval) in `GamesViewModel`
-3. Team logo images via `AsyncImage` fetched from ESPN logo URLs
+1. `xcodegen generate`; build both macOS and iOS targets — shared files still compile cleanly.
+2. **iOS Simulator (iPhone 15, iOS 17+):**
+   - Tab bar shows Games / Standings / Settings.
+   - Games tab: "Upcoming 2 weeks of games" header; rows show time + TZ; tap row → detail page.
+   - Detail page: live score for in-progress, box score for finals, broadcasts list, Watch Online + Watch Nearby buttons, "Remind me" toggle that schedules a local notification.
+   - Tap venue on detail → Apple Maps opens with search.
+   - Watch Online: tap a network → Safari with `?utm_source=wnba_games_app_ios`.
+   - Watch Nearby: permission prompt → 5 sorted sports bars → tap opens Apple Maps directions.
+   - Standings tab: two conferences, sorted by record, tap team → Team Detail.
+   - Team Detail: upcoming + recent games rendered with `GameRowView`.
+   - Toggle notification, set device time forward, confirm local notification fires.
+   - Add widget to Home Screen, confirm it shows the next game and deep-links into the detail view.
+3. **macOS menu-bar:** popover unchanged except for the new TZ suffix on times. Tap a network badge → URL has UTM param.
+4. Submit to TestFlight; confirm Apple review notes 4.2 is resolved.

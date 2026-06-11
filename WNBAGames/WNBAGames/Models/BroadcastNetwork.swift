@@ -66,18 +66,27 @@ enum BroadcastNetwork: String, CaseIterable, Hashable {
     }
 
     var watchURL: URL? {
-        switch self {
-        case .amazonPrime: return URL(string: "https://www.amazon.com/gp/video/storefront")
-        case .espn, .espnPlus, .abc: return URL(string: "https://www.espn.com/watch")
-        case .cbs: return URL(string: "https://www.paramountplus.com")
-        case .peacock, .nbc: return URL(string: "https://www.peacocktv.com")
-        case .nbaTV: return URL(string: "https://www.nba.com/watch")
-        case .ion: return URL(string: "https://iontelevision.com")
-        case .usaNetwork: return URL(string: "https://www.usanetwork.com")
-        case .disneyPlus: return URL(string: "https://www.disneyplus.com")
-        case .wnbaLeaguePass: return URL(string: "https://leaguepass.wnba.com")
-        case .unknown: return nil
+        let base: String? = switch self {
+        case .amazonPrime: "https://www.amazon.com/gp/video/storefront"
+        case .espn, .espnPlus, .abc: "https://www.espn.com/watch"
+        case .cbs: "https://www.paramountplus.com"
+        case .peacock, .nbc: "https://www.peacocktv.com"
+        case .nbaTV: "https://www.nba.com/watch"
+        case .ion: "https://iontelevision.com"
+        case .usaNetwork: "https://www.usanetwork.com"
+        case .disneyPlus: "https://www.disneyplus.com"
+        case .wnbaLeaguePass: "https://leaguepass.wnba.com"
+        case .unknown: nil
         }
+        return base.flatMap(Self.tagged)
+    }
+
+    private static func tagged(_ s: String) -> URL? {
+        guard var c = URLComponents(string: s) else { return nil }
+        var items = c.queryItems ?? []
+        items.append(URLQueryItem(name: "utm_source", value: "wnba_games_app_ios"))
+        c.queryItems = items
+        return c.url
     }
 
     var brandColor: Color {

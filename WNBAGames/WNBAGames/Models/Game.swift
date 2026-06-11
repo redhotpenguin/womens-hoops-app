@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Game: Identifiable {
+struct Game: Identifiable, Hashable {
     let id: String
     let date: Date
     let homeTeam: Team
@@ -9,6 +9,9 @@ struct Game: Identifiable {
     let venueCity: String?
     let networks: [BroadcastNetwork]
     let status: GameStatus
+
+    static func == (lhs: Game, rhs: Game) -> Bool { lhs.id == rhs.id }
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
 
     var isUpcoming: Bool {
         status == .scheduled && date > Date()
@@ -25,7 +28,9 @@ struct Game: Identifiable {
         let f = DateFormatter()
         f.timeStyle = .short
         f.timeZone = .current
-        return f.string(from: date)
+        let time = f.string(from: date)
+        let tz = TimeZone.current.abbreviation(for: date) ?? ""
+        return tz.isEmpty ? time : "\(time) \(tz)"
     }
 }
 

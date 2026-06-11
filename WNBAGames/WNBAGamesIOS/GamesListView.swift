@@ -1,10 +1,16 @@
 import SwiftUI
 
+enum GameDestination: Hashable {
+    case online(Game)
+    case nearby(Game)
+}
+
 struct GamesListView: View {
     @StateObject private var viewModel = GamesViewModel()
+    @State private var path: [GameDestination] = []
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             content
                 .navigationTitle("WNBA Games")
                 .toolbar {
@@ -12,6 +18,12 @@ struct GamesListView: View {
                         if viewModel.loadingState == .loading {
                             ProgressView()
                         }
+                    }
+                }
+                .navigationDestination(for: GameDestination.self) { dest in
+                    switch dest {
+                    case .online(let game): WatchOnlineView(game: game)
+                    case .nearby(let game): WatchNearbyView(game: game)
                     }
                 }
         }
@@ -32,8 +44,21 @@ struct GamesListView: View {
         case .loaded where viewModel.games.isEmpty:
             EmptyStateView(state: .noGames)
         default:
-            List(viewModel.games) { game in
-                GameRowView(game: game)
+            List {
+                Section {
+                    ForEach(viewModel.games) { game in
+                        GameRowView(
+                            game: game,
+                            onShowOnline: { path.append(.online(game)) },
+                            onShowNearby: { path.append(.nearby(game)) }
+                        )
+                    }
+                } header: {
+                    Text("Upcoming 2 weeks of games")
+                        .font(.subheadline)
+                        .textCase(nil)
+                        .foregroundStyle(.secondary)
+                }
             }
             .listStyle(.plain)
             .refreshable {
