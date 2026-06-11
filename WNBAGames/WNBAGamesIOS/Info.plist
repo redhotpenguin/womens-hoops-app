@@ -20,6 +20,10 @@
     <string>1.0</string>
     <key>CFBundleVersion</key>
     <string>1</string>
+    <key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+    <string>Add WNBA games to your calendar so you don't miss tip-off.</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>Add WNBA games to your calendar so you don't miss tip-off.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>We use your location to find sports bars near you that are showing the game.</string>
     <key>UILaunchScreen</key>

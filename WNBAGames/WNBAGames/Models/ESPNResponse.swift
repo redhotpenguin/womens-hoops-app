@@ -94,3 +94,38 @@ struct ESPNStandingsStat: Codable {
     let value: Double?
     let displayValue: String?
 }
+
+struct ESPNLeadersResponse: Codable {
+    let categories: [ESPNLeaderCategory]?
+}
+
+struct ESPNLeaderCategory: Codable {
+    let name: String
+    let displayName: String?
+    let shortDisplayName: String?
+    let leaders: [ESPNLeaderEntry]?
+}
+
+struct ESPNLeaderEntry: Codable {
+    let displayValue: String?
+    let value: Double?
+    let athlete: ESPNRef?
+    let team: ESPNRef?
+}
+
+struct ESPNRef: Codable {
+    let ref: String?
+    enum CodingKeys: String, CodingKey {
+        case ref = "$ref"
+    }
+}
+
+struct ESPNAthleteDetail: Codable {
+    let displayName: String?
+    let shortName: String?
+}
+
+struct ESPNTeamDetail: Codable {
+    let abbreviation: String?
+    let displayName: String?
+}

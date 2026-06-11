@@ -5,8 +5,17 @@ struct GameDetailView: View {
 
     @State private var game: Game
     @State private var pollTask: Task<Void, Never>? = nil
+    @State private var calendarStatus: CalendarStatus = .idle
     @StateObject private var notifications = NotificationManager.shared
     @Environment(\.openURL) private var openURL
+
+    private enum CalendarStatus: Equatable {
+        case idle
+        case adding
+        case added
+        case denied
+        case error(String)
+    }
 
     init(game: Game) {
         self.initialGame = game
@@ -43,6 +52,19 @@ struct GameDetailView: View {
                             Spacer()
                         }
                     }
+                    Button {
+                        Task { await addToCalendar() }
+                    } label: {
+                        HStack {
+                            Image(systemName: calendarStatus == .added ? "calendar.badge.checkmark" : "calendar.badge.plus")
+                            Text(calendarLabel)
+                            Spacer()
+                            if calendarStatus == .adding {
+                                ProgressView()
+                            }
+                        }
+                    }
+                    .disabled(calendarStatus == .adding || calendarStatus == .added)
                 }
             }
 
@@ -132,6 +154,25 @@ struct GameDetailView: View {
         guard let encoded = q.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: "http://maps.apple.com/?q=\(encoded)") else { return }
         openURL(url)
+    }
+
+    private var calendarLabel: String {
+        switch calendarStatus {
+        case .idle, .adding: return "Add to Calendar"
+        case .added: return "Added to Calendar"
+        case .denied: return "Calendar access denied"
+        case .error(let msg): return "Couldn't add: \(msg)"
+        }
+    }
+
+    private func addToCalendar() async {
+        calendarStatus = .adding
+        let result = await CalendarManager.shared.add(game)
+        switch result {
+        case .added: calendarStatus = .added
+        case .denied: calendarStatus = .denied
+        case .failed(let m): calendarStatus = .error(m)
+        }
     }
 
     private func startPollingIfLive() {

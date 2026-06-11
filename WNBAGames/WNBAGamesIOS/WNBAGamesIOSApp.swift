@@ -16,6 +16,8 @@ struct RootTabView: View {
                 .tabItem { Label("Games", systemImage: "sportscourt") }
             StandingsView()
                 .tabItem { Label("Standings", systemImage: "list.number") }
+            LeadersView()
+                .tabItem { Label("Leaders", systemImage: "trophy") }
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gear") }
         }

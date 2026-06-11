@@ -1,8 +1,17 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @StateObject private var favorites = FavoriteTeamStore.shared
+
     private var versionString: String {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
+    }
+
+    private var favoriteBinding: Binding<String?> {
+        Binding(
+            get: { favorites.abbreviation },
+            set: { favorites.abbreviation = $0 }
+        )
     }
 
     var body: some View {
@@ -23,6 +32,23 @@ struct SettingsView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
+                    ShareLink(
+                        item: AppShare.url,
+                        subject: Text("WNBA Games"),
+                        message: Text(AppShare.message)
+                    ) {
+                        Label("Share WNBA Games", systemImage: "square.and.arrow.up")
+                    }
+                }
+
+                Section("Favorite Team") {
+                    Picker("Favorite", selection: favoriteBinding) {
+                        Text("None").tag(String?.none)
+                        ForEach(WNBATeamCatalog.all) { team in
+                            Text(team.displayName).tag(String?(team.abbreviation))
+                        }
+                    }
+                    .pickerStyle(.menu)
                 }
 
                 Section("Motivation") {

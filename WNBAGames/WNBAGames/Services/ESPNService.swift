@@ -199,6 +199,100 @@ actor ESPNService {
         }
     }
 
+    func fetchLeaders() async throws -> [LeaderCategory] {
+        let year = Calendar.current.component(.year, from: Date())
+        // Walk back a year if early in the offseason and current-year fetch is empty.
+        for candidateYear in [year, year - 1] {
+            if let result = try? await fetchLeadersForYear(candidateYear), !result.isEmpty {
+                return result
+            }
+        }
+        return []
+    }
+
+    private func fetchLeadersForYear(_ year: Int) async throws -> [LeaderCategory] {
+        let urlString = "https://sports.core.api.espn.com/v2/sports/basketball/leagues/wnba/seasons/\(year)/types/2/leaders?lang=en&region=us"
+        guard let url = URL(string: urlString) else {
+            throw ESPNServiceError.invalidURL
+        }
+
+        let data: Data
+        do {
+            let (responseData, _) = try await session.data(from: url)
+            data = responseData
+        } catch {
+            throw ESPNServiceError.networkError(error)
+        }
+
+        let decoded: ESPNLeadersResponse
+        do {
+            decoded = try JSONDecoder().decode(ESPNLeadersResponse.self, from: data)
+        } catch {
+            throw ESPNServiceError.decodingError(error)
+        }
+
+        let interesting: [String: String] = [
+            "pointsPerGame": "Points",
+            "reboundsPerGame": "Rebounds",
+            "assistsPerGame": "Assists",
+            "stealsPerGame": "Steals",
+            "blocksPerGame": "Blocks"
+        ]
+
+        let categories = (decoded.categories ?? []).filter { interesting[$0.name] != nil }
+
+        var resolved: [LeaderCategory] = []
+        try await withThrowingTaskGroup(of: LeaderCategory?.self) { group in
+            for cat in categories {
+                let display = interesting[cat.name] ?? cat.displayName ?? cat.name
+                group.addTask {
+                    let entries = (cat.leaders ?? []).prefix(20)
+                    var leaders: [Leader] = []
+                    for entry in entries {
+                        let athleteName = await self.fetchAthleteName(entry.athlete?.ref)
+                        let teamAbbr = await self.fetchTeamAbbreviation(entry.team?.ref)
+                        let value = entry.displayValue ?? (entry.value.map { String(format: "%.1f", $0) } ?? "—")
+                        leaders.append(Leader(
+                            athleteName: athleteName ?? "Unknown",
+                            teamAbbreviation: teamAbbr,
+                            displayValue: value,
+                            value: entry.value
+                        ))
+                    }
+                    return LeaderCategory(key: cat.name, displayName: display, leaders: leaders)
+                }
+            }
+            for try await cat in group {
+                if let cat { resolved.append(cat) }
+            }
+        }
+
+        let order = ["pointsPerGame", "reboundsPerGame", "assistsPerGame", "stealsPerGame", "blocksPerGame"]
+        return resolved.sorted { a, b in
+            (order.firstIndex(of: a.key) ?? .max) < (order.firstIndex(of: b.key) ?? .max)
+        }
+    }
+
+    private func fetchAthleteName(_ ref: String?) async -> String? {
+        guard let ref, let url = httpsURL(from: ref) else { return nil }
+        guard let (data, _) = try? await session.data(from: url) else { return nil }
+        let decoded = try? JSONDecoder().decode(ESPNAthleteDetail.self, from: data)
+        return decoded?.displayName ?? decoded?.shortName
+    }
+
+    private func fetchTeamAbbreviation(_ ref: String?) async -> String? {
+        guard let ref, let url = httpsURL(from: ref) else { return nil }
+        guard let (data, _) = try? await session.data(from: url) else { return nil }
+        let decoded = try? JSONDecoder().decode(ESPNTeamDetail.self, from: data)
+        return decoded?.abbreviation
+    }
+
+    private func httpsURL(from ref: String) -> URL? {
+        // ESPN $refs come back as http://... — upgrade to https for ATS.
+        let upgraded = ref.replacingOccurrences(of: "http://", with: "https://")
+        return URL(string: upgraded)
+    }
+
     private func mapStandingsEntry(_ entry: ESPNStandingsEntry) -> Standing? {
         let team = mapTeam(entry.team)
         let wins = entry.stats.first(where: { $0.name == "wins" })?.value.map(Int.init) ?? 0
