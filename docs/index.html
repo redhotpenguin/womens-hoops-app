@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WNBA Games — Support</title>
+    <meta name="description" content="Support and contact information for the WNBA Games iPhone app.">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f3fa;
+            color: #1c1c1e;
+            margin: 0;
+            padding: 0;
+            line-height: 1.55;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px 64px;
+        }
+        header {
+            text-align: center;
+            padding: 32px 0 16px;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(180deg, #c9b3e8 0%, #a682d4 100%);
+            border-radius: 22px;
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            margin: 0 0 4px;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .tagline {
+            color: #6b6b78;
+            margin: 0;
+            font-size: 17px;
+        }
+        section {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        h2 {
+            font-size: 20px;
+            margin: 0 0 12px;
+            font-weight: 600;
+        }
+        p { margin: 0 0 12px; }
+        p:last-child { margin-bottom: 0; }
+        a {
+            color: #6a3fa8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        a:hover { text-decoration: underline; }
+        .email-button {
+            display: inline-block;
+            background: #6a3fa8;
+            color: #ffffff;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .email-button:hover {
+            background: #5a3493;
+            text-decoration: none;
+        }
+        .faq dt {
+            font-weight: 600;
+            margin-top: 14px;
+        }
+        .faq dt:first-child { margin-top: 0; }
+        .faq dd {
+            margin: 4px 0 0;
+            color: #444;
+        }
+        footer {
+            text-align: center;
+            margin-top: 36px;
+            font-size: 13px;
+            color: #8a8a92;
+        }
+        footer a { color: #6a3fa8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🏀</div>
+            <h1>WNBA Games</h1>
+            <p class="tagline">Schedule, standings, and where to watch — on your iPhone.</p>
+        </header>
+
+        <section>
+            <h2>Contact &amp; Support</h2>
+            <p>Have a question, found a bug, or want to suggest a feature? We'd love to hear from you.</p>
+            <p><a class="email-button" href="mailto:leaven_swallow.8d@icloud.com?subject=WNBA%20Games%20Support">Email Support</a></p>
+            <p style="margin-top:14px">You can also <a href="https://github.com/redhotpenguin/wnba_games_app_ios/issues">open an issue on GitHub</a>.</p>
+        </section>
+
+        <section>
+            <h2>Frequently Asked Questions</h2>
+            <dl class="faq">
+                <dt>Why does the app ask for my location?</dt>
+                <dd>Only when you tap <em>Watch Nearby</em> on a game. Your location is used once, on-device, to search for sports bars near you using Apple Maps. We don't store or transmit it.</dd>
+
+                <dt>Why does the app ask for calendar access?</dt>
+                <dd>Only when you tap <em>Add to Calendar</em> on a game. The app adds a single event (date, venue, broadcasts) to your default calendar. It never reads existing events.</dd>
+
+                <dt>Do you collect any personal data?</dt>
+                <dd>No. The app has no analytics SDKs, no tracking, and no third-party advertising. Your favorite team is stored only on your device.</dd>
+
+                <dt>Where does the game data come from?</dt>
+                <dd>Schedule, standings, scores, and league leaders come from ESPN's public WNBA API. We don't run our own backend.</dd>
+
+                <dt>I added a reminder — when will it fire?</dt>
+                <dd>Local notifications fire one hour before the scheduled tip-off, in your device's local timezone. Notifications run entirely on your device and require no internet connection.</dd>
+
+                <dt>The widget isn't updating.</dt>
+                <dd>iOS refreshes Home Screen widgets on its own schedule (usually within an hour). You can force a refresh by removing the widget and adding it back.</dd>
+
+                <dt>How do I delete the app and all its data?</dt>
+                <dd>Long-press the app icon on your Home Screen and tap <em>Remove App → Delete App</em>. Because we don't sync to a server, deleting the app erases everything.</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>Privacy</h2>
+            <p>WNBA Games collects no personally identifiable information. Read the full <a href="https://github.com/redhotpenguin/wnba_games_app_ios/blob/main/PRIVACY.md">privacy policy</a>.</p>
+        </section>
+
+        <section>
+            <h2>Legal</h2>
+            <p>WNBA is a trademark of WNBA Enterprises, LLC. Team names, logos, and colors are trademarks of their respective teams. This application is not affiliated with, endorsed by, or sponsored by the WNBA, its member teams, or NBA Properties, Inc.</p>
+        </section>
+
+        <footer>
+            <p>WNBA Games · <a href="https://github.com/redhotpenguin/wnba_games_app_ios">Source on GitHub</a></p>
+        </footer>
+    </div>
+</body>
+</html>

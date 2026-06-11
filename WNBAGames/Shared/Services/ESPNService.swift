@@ -246,7 +246,7 @@ actor ESPNService {
             for cat in categories {
                 let display = interesting[cat.name] ?? cat.displayName ?? cat.name
                 group.addTask {
-                    let entries = (cat.leaders ?? []).prefix(20)
+                    let entries = (cat.leaders ?? []).prefix(10)
                     var leaders: [Leader] = []
                     for entry in entries {
                         let athleteName = await self.fetchAthleteName(entry.athlete?.ref)
