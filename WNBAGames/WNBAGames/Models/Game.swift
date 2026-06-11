@@ -9,12 +9,34 @@ struct Game: Identifiable, Hashable {
     let venueCity: String?
     let networks: [BroadcastNetwork]
     let status: GameStatus
+    var homeScore: String?
+    var awayScore: String?
+    var period: Int?
+    var displayClock: String?
 
     static func == (lhs: Game, rhs: Game) -> Bool { lhs.id == rhs.id }
     func hash(into hasher: inout Hasher) { hasher.combine(id) }
 
     var isUpcoming: Bool {
         status == .scheduled && date > Date()
+    }
+
+    var isLive: Bool { status == .inProgress }
+    var isFinal: Bool { status == .final_ }
+
+    var statusLine: String? {
+        switch status {
+        case .inProgress:
+            if let period, let displayClock {
+                return "Q\(period) · \(displayClock)"
+            }
+            return "Live"
+        case .final_:
+            return "Final"
+        case .postponed: return "Postponed"
+        case .canceled: return "Canceled"
+        case .scheduled: return nil
+        }
     }
 
     var formattedDate: String {
@@ -34,11 +56,14 @@ struct Game: Identifiable, Hashable {
     }
 }
 
-struct Team: Identifiable {
+struct Team: Identifiable, Hashable {
     let id: String
     let displayName: String
     let abbreviation: String
     let primaryColor: Color?
+
+    static func == (lhs: Team, rhs: Team) -> Bool { lhs.id == rhs.id }
+    func hash(into hasher: inout Hasher) { hasher.combine(id) }
 
     var websiteURL: URL? {
         let subdomain: String? = switch abbreviation {

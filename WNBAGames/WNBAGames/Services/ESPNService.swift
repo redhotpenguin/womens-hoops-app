@@ -101,9 +101,9 @@ actor ESPNService {
 
         guard let date = parseESPNDate(event.date) else { return nil }
 
-        let homeESPN = competition.competitors.first { $0.homeAway == "home" }?.team
-        let awayESPN = competition.competitors.first { $0.homeAway == "away" }?.team
-        guard let homeESPN, let awayESPN else { return nil }
+        let homeCompetitor = competition.competitors.first { $0.homeAway == "home" }
+        let awayCompetitor = competition.competitors.first { $0.homeAway == "away" }
+        guard let homeESPN = homeCompetitor?.team, let awayESPN = awayCompetitor?.team else { return nil }
 
         let networks: [BroadcastNetwork] = (competition.broadcasts ?? [])
             .flatMap { $0.names }
@@ -124,7 +124,93 @@ actor ESPNService {
             venueName: competition.venue?.fullName,
             venueCity: venueCity,
             networks: networks,
-            status: GameStatus.from(competition.status.type.name)
+            status: GameStatus.from(competition.status.type.name),
+            homeScore: homeCompetitor?.score,
+            awayScore: awayCompetitor?.score,
+            period: competition.status.period,
+            displayClock: competition.status.displayClock
+        )
+    }
+
+    // Fetch all games (past + future) in the 14-day window — used for team detail recent results.
+    func fetchAllRecentAndUpcoming(daysBack: Int = 14, daysForward: Int = 14) async throws -> [Game] {
+        let dates = surroundingDates(back: daysBack, forward: daysForward)
+        var allEvents: [ESPNEvent] = []
+        try await withThrowingTaskGroup(of: [ESPNEvent].self) { group in
+            for dateStr in dates {
+                group.addTask { try await self.fetchDay(dateStr) }
+            }
+            for try await events in group {
+                allEvents.append(contentsOf: events)
+            }
+        }
+        return allEvents
+            .compactMap { mapEvent($0) }
+            .sorted { $0.date < $1.date }
+    }
+
+    private func surroundingDates(back: Int, forward: Int) -> [String] {
+        let f = DateFormatter()
+        f.dateFormat = "yyyyMMdd"
+        f.timeZone = TimeZone(identifier: "UTC")!
+        let cal = Calendar.current
+        return (-back...forward).compactMap { offset in
+            cal.date(byAdding: .day, value: offset, to: Date()).map { f.string(from: $0) }
+        }
+    }
+
+    // Re-fetch a single game by re-pulling its date and finding the matching event.
+    // Used by the detail page for live-score polling.
+    func refreshGame(id: String, on date: Date) async throws -> Game? {
+        let f = DateFormatter()
+        f.dateFormat = "yyyyMMdd"
+        f.timeZone = TimeZone(identifier: "UTC")!
+        let events = try await fetchDay(f.string(from: date))
+        return events.first(where: { $0.id == id }).flatMap(mapEvent)
+    }
+
+    func fetchStandings() async throws -> [Conference] {
+        guard let url = URL(string:
+            "https://site.api.espn.com/apis/v2/sports/basketball/wnba/standings"
+        ) else {
+            throw ESPNServiceError.invalidURL
+        }
+
+        let data: Data
+        do {
+            let (responseData, _) = try await session.data(from: url)
+            data = responseData
+        } catch {
+            throw ESPNServiceError.networkError(error)
+        }
+
+        let decoded: ESPNStandingsResponse
+        do {
+            decoded = try JSONDecoder().decode(ESPNStandingsResponse.self, from: data)
+        } catch {
+            throw ESPNServiceError.decodingError(error)
+        }
+
+        guard let children = decoded.children else { return [] }
+
+        return children.map { conference in
+            let standings = conference.standings.entries.compactMap { mapStandingsEntry($0) }
+            return Conference(name: conference.name, standings: standings)
+        }
+    }
+
+    private func mapStandingsEntry(_ entry: ESPNStandingsEntry) -> Standing? {
+        let team = mapTeam(entry.team)
+        let wins = entry.stats.first(where: { $0.name == "wins" })?.value.map(Int.init) ?? 0
+        let losses = entry.stats.first(where: { $0.name == "losses" })?.value.map(Int.init) ?? 0
+        let winPercent = entry.stats.first(where: { $0.name == "winPercent" })?.value
+        let gamesBehind = entry.stats.first(where: { $0.name == "gamesBehind" })?.value
+        return Standing(
+            team: team,
+            wins: wins,
+            losses: losses,
+            winPercent: winPercent,
+            gamesBehind: gamesBehind
         )
     }
 

@@ -8,6 +8,7 @@ struct GameRowView: View {
     #if os(iOS)
     var onShowOnline: (() -> Void)? = nil
     var onShowNearby: (() -> Void)? = nil
+    var onShowDetails: (() -> Void)? = nil
     #endif
     @Environment(\.openURL) private var openURL
 
@@ -76,6 +77,12 @@ struct GameRowView: View {
                 onShowNearby?()
             } label: {
                 actionPill(label: "Nearby", icon: "mappin.and.ellipse")
+            }
+            .buttonStyle(.borderless)
+            Button {
+                onShowDetails?()
+            } label: {
+                actionPill(label: "Details", icon: "info.circle.fill")
             }
             .buttonStyle(.borderless)
         }

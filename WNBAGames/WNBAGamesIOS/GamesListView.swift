@@ -3,6 +3,7 @@ import SwiftUI
 enum GameDestination: Hashable {
     case online(Game)
     case nearby(Game)
+    case detail(Game)
 }
 
 struct GamesListView: View {
@@ -24,6 +25,7 @@ struct GamesListView: View {
                     switch dest {
                     case .online(let game): WatchOnlineView(game: game)
                     case .nearby(let game): WatchNearbyView(game: game)
+                    case .detail(let game): GameDetailView(game: game)
                     }
                 }
         }
@@ -45,19 +47,17 @@ struct GamesListView: View {
             EmptyStateView(state: .noGames)
         default:
             List {
-                Section {
-                    ForEach(viewModel.games) { game in
-                        GameRowView(
-                            game: game,
-                            onShowOnline: { path.append(.online(game)) },
-                            onShowNearby: { path.append(.nearby(game)) }
-                        )
-                    }
-                } header: {
-                    Text("Upcoming 2 weeks of games")
-                        .font(.subheadline)
-                        .textCase(nil)
-                        .foregroundStyle(.secondary)
+                Text("Upcoming 2 weeks of games")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .listRowSeparator(.hidden)
+                ForEach(viewModel.games) { game in
+                    GameRowView(
+                        game: game,
+                        onShowOnline: { path.append(.online(game)) },
+                        onShowNearby: { path.append(.nearby(game)) },
+                        onShowDetails: { path.append(.detail(game)) }
+                    )
                 }
             }
             .listStyle(.plain)

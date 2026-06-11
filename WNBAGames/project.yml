@@ -52,6 +52,8 @@ targets:
       - path: WNBAGames/Views/EmptyStateView.swift
       - path: WNBAGames/Views/NetworkBadgeView.swift
       - WNBAGamesIOS
+    dependencies:
+      - target: WNBAGamesWidget
     settings:
       base:
         PRODUCT_NAME: WNBAGamesIOS
@@ -70,3 +72,36 @@ targets:
           CODE_SIGN_STYLE: Manual
           CODE_SIGN_IDENTITY: "Apple Distribution"
           PROVISIONING_PROFILE_SPECIFIER: "WNBA Games App Store"
+
+  WNBAGamesWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: WNBAGames/Models
+        createIntermediateGroups: true
+      - path: WNBAGames/Services
+        createIntermediateGroups: true
+      - path: WNBAGames/Extensions
+        createIntermediateGroups: true
+      - WNBAGamesWidget
+    settings:
+      base:
+        PRODUCT_NAME: WNBAGamesWidget
+        PRODUCT_BUNDLE_IDENTIFIER: com.phred.WNBAGamesIOS.widget
+        INFOPLIST_FILE: WNBAGamesWidget/Info.plist
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        SWIFT_EMIT_LOC_STRINGS: YES
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks"
+        SKIP_INSTALL: YES
+      configs:
+        Debug:
+          CODE_SIGN_STYLE: Automatic
+          CODE_SIGN_IDENTITY: "Apple Development"
+          PROVISIONING_PROFILE_SPECIFIER: ""
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: "WNBA Games Widget App Store"
+    dependencies:
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework

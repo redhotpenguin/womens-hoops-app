@@ -62,9 +62,35 @@ struct ESPNBroadcast: Codable {
 
 struct ESPNStatus: Codable {
     let type: ESPNStatusType
+    let period: Int?
+    let displayClock: String?
 }
 
 struct ESPNStatusType: Codable {
     let name: String
     let completed: Bool
+}
+
+struct ESPNStandingsResponse: Codable {
+    let children: [ESPNStandingsConference]?
+}
+
+struct ESPNStandingsConference: Codable {
+    let name: String
+    let standings: ESPNStandingsBlock
+}
+
+struct ESPNStandingsBlock: Codable {
+    let entries: [ESPNStandingsEntry]
+}
+
+struct ESPNStandingsEntry: Codable {
+    let team: ESPNTeam
+    let stats: [ESPNStandingsStat]
+}
+
+struct ESPNStandingsStat: Codable {
+    let name: String
+    let value: Double?
+    let displayValue: String?
 }
