@@ -22,4 +22,4 @@ The app has no analytics, no advertising SDKs, no crash-reporting services, and 
 
 ## Contact
 
-Questions? Open an issue at https://github.com/redhotpenguin/wnba_menubar_app/issues
+Questions? Open an issue at https://github.com/redhotpenguin/wnba_games_app_ios/issues

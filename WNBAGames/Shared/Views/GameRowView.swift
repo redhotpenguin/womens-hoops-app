@@ -1,15 +1,10 @@
 import SwiftUI
-#if os(macOS)
-import AppKit
-#endif
 
 struct GameRowView: View {
     let game: Game
-    #if os(iOS)
     var onShowOnline: (() -> Void)? = nil
     var onShowNearby: (() -> Void)? = nil
     var onShowDetails: (() -> Void)? = nil
-    #endif
     @Environment(\.openURL) private var openURL
 
     private var gsColor: Color? {
@@ -37,7 +32,36 @@ struct GameRowView: View {
                 }
             }
 
-            bottomRow
+            HStack(spacing: 6) {
+                if let venue = game.venueName {
+                    Button {
+                        openVenueInMaps(name: venue, city: game.venueCity)
+                    } label: {
+                        HStack(spacing: 3) {
+                            Image(systemName: "mappin.circle.fill")
+                                .font(.system(size: 10))
+                            Text(venue)
+                                .font(.caption2)
+                                .lineLimit(1)
+                        }
+                        .foregroundStyle(.tint)
+                    }
+                    .buttonStyle(.plain)
+                }
+                Spacer()
+                Button { onShowOnline?() } label: {
+                    actionPill(label: "Online", icon: "play.rectangle.fill")
+                }
+                .buttonStyle(.borderless)
+                Button { onShowNearby?() } label: {
+                    actionPill(label: "Nearby", icon: "mappin.and.ellipse")
+                }
+                .buttonStyle(.borderless)
+                Button { onShowDetails?() } label: {
+                    actionPill(label: "Details", icon: "info.circle.fill")
+                }
+                .buttonStyle(.borderless)
+            }
         }
         .padding(.vertical, 6)
         .background {
@@ -47,68 +71,6 @@ struct GameRowView: View {
         }
     }
 
-    @ViewBuilder
-    private var bottomRow: some View {
-        #if os(iOS)
-        HStack(spacing: 6) {
-            if let venue = game.venueName {
-                Button {
-                    openVenueInMaps(name: venue, city: game.venueCity)
-                } label: {
-                    HStack(spacing: 3) {
-                        Image(systemName: "mappin.circle.fill")
-                            .font(.system(size: 10))
-                        Text(venue)
-                            .font(.caption2)
-                            .lineLimit(1)
-                    }
-                    .foregroundStyle(.tint)
-                }
-                .buttonStyle(.plain)
-            }
-            Spacer()
-            Button {
-                onShowOnline?()
-            } label: {
-                actionPill(label: "Online", icon: "play.rectangle.fill")
-            }
-            .buttonStyle(.borderless)
-            Button {
-                onShowNearby?()
-            } label: {
-                actionPill(label: "Nearby", icon: "mappin.and.ellipse")
-            }
-            .buttonStyle(.borderless)
-            Button {
-                onShowDetails?()
-            } label: {
-                actionPill(label: "Details", icon: "info.circle.fill")
-            }
-            .buttonStyle(.borderless)
-        }
-        #else
-        HStack(spacing: 4) {
-            if let venue = game.venueName {
-                Text(venue)
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
-                    .lineLimit(1)
-            }
-            Spacer()
-            if game.networks.isEmpty {
-                Text("TBD")
-                    .font(.system(size: 10))
-                    .foregroundStyle(.tertiary)
-            } else {
-                ForEach(game.networks, id: \.rawValue) { network in
-                    NetworkBadgeView(network: network)
-                }
-            }
-        }
-        #endif
-    }
-
-    #if os(iOS)
     private func openVenueInMaps(name: String, city: String?) {
         var query = name
         if let city, !city.isEmpty {
@@ -136,7 +98,6 @@ struct GameRowView: View {
                 .strokeBorder(Color.accentColor.opacity(0.4), lineWidth: 0.5)
         )
     }
-    #endif
 }
 
 private struct TeamLabel: View {
@@ -147,11 +108,6 @@ private struct TeamLabel: View {
         if let url = team.websiteURL {
             Button { openURL(url) } label: { chip }
                 .buttonStyle(.plain)
-                #if os(macOS)
-                .onHover { hovering in
-                    if hovering { NSCursor.pointingHand.push() } else { NSCursor.pop() }
-                }
-                #endif
         } else {
             chip
         }

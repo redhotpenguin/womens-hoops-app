@@ -1,50 +1,46 @@
 # WNBA Games
 
-WNBA schedule in your Mac menu bar and on your iPhone.
-
-View the next two weeks of upcoming WNBA games — tip-off times, venues, and every broadcast network — with tappable badges that open the streaming site directly.
+A WNBA companion app for iPhone — schedule, standings, league leaders, and where to watch.
 
 <!-- Add screenshot here -->
 
 ## Features
 
-- Two weeks of scheduled games with date and tip-off time (your local timezone)
-- Home and away teams shown as color-coded abbreviations, tap to open the team's website
-- Venue for each game
-- Broadcast network badges (ESPN, ABC, Prime Video, Peacock, ION, CBS, NBC, USA Network, NBA TV, WNBA League Pass) with brand colors
-- Apple TV app indicator on networks that have an Apple TV app
-- Tap any badge to open that network's streaming site
-- Golden State Valkyries games highlighted in team purple
-- Manual refresh (macOS) / pull-to-refresh (iOS)
-- macOS: lives only in the menu bar — no Dock icon, no full window
+- **Games tab** — the next two weeks of WNBA games with date, tip-off time (in your local timezone), venue, and broadcast networks. Tap a venue to open Apple Maps.
+- **Watch Online** — per-game list of networks (ESPN, ABC, Prime Video, Peacock, ION, CBS, NBC, USA Network, NBA TV, WNBA League Pass), Apple TV indicators, tap to open the streaming site.
+- **Watch Nearby** — finds the 5 closest sports bars to your current location using on-device CoreLocation + MapKit search.
+- **Game Detail** — matchup, live score polling (every 30 seconds for in-progress games), broadcast list, "Remind me 1 hour before tip-off" (local notification), and "Add to Calendar" (EventKit).
+- **Standings tab** — Western and Eastern conference standings with rank, W/L, win %, and games-behind. Tap a team to drill into its upcoming + recent games.
+- **Leaders tab** — Top 20 across Points, Rebounds, Assists, Steals, and Blocks.
+- **Settings tab** — favorite-team picker (filters the Games list to "My Team"), share-the-app sheet (AirDrop), and trademark/privacy attribution.
+- **Home Screen widget** — "Next WNBA Game" widget in small and medium sizes; refreshes hourly.
+- Golden State Valkyries highlighted throughout in team purple.
 
 ## Requirements
 
-- macOS 13 Ventura or later (menu bar app)
-- iOS 16 or later (iPhone app)
-
-To build from source: Xcode 16+ and [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
+- iOS 16 or later (iPhone)
+- Xcode 16+ and [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`) to build from source
 
 ## Building from source
 
 ```bash
-git clone https://github.com/redhotpenguin/wnba_menubar_app.git
-cd wnba_menubar_app/WNBAGames
+git clone https://github.com/redhotpenguin/wnba_games_app_ios.git
+cd wnba_games_app_ios/WNBAGames
 xcodegen generate
 open WNBAGames.xcodeproj
 ```
 
 ## Data source
 
-Game data comes from ESPN's public scoreboard API — no API key required.
+Game data, standings, and leaders come from ESPN's public WNBA API — no API key required.
 
 ## Privacy
 
-This app collects no data. See [PRIVACY.md](PRIVACY.md) for the full privacy policy.
+The app collects no PII and contains no third-party analytics or tracking SDKs. Location is used only when you tap **Watch Nearby**, and is sent only to Apple's MapKit search to find sports bars near you. Calendar access (when you tap **Add to Calendar**) is write-only. See [PRIVACY.md](PRIVACY.md) for the full policy.
 
 ## Legal
 
-WNBA and the WNBA logo are trademarks of WNBA Enterprises, LLC. The WNBA team names, logos, and colors are trademarks of their respective teams. This application is not affiliated with, endorsed by, or sponsored by the WNBA, its member teams, or NBA Properties, Inc. Game schedule data is sourced from ESPN's public API.
+WNBA and the WNBA logo are trademarks of WNBA Enterprises, LLC. The WNBA team names, logos, and colors are trademarks of their respective teams. This application is not affiliated with, endorsed by, or sponsored by the WNBA, its member teams, or NBA Properties, Inc. Schedule, standings, and leader data are sourced from ESPN's public API.
 
 ## License
 

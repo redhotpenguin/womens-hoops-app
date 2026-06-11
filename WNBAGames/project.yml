@@ -2,7 +2,6 @@ name: WNBAGames
 options:
   bundleIdPrefix: com.phred
   deploymentTarget:
-    macOS: "13.0"
     iOS: "16.0"
   xcodeVersion: "16.0"
   createIntermediateGroups: true
@@ -14,43 +13,12 @@ settings:
     DEVELOPMENT_TEAM: 3AJVPVCRK8
 
 targets:
-  WNBAGames:
-    type: application
-    platform: macOS
-    sources:
-      - WNBAGames
-    settings:
-      base:
-        PRODUCT_NAME: WNBAGames
-        PRODUCT_BUNDLE_IDENTIFIER: com.phred.WNBAGames
-        INFOPLIST_FILE: WNBAGames/Info.plist
-        CODE_SIGN_ENTITLEMENTS: WNBAGames/WNBAGames.entitlements
-        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
-        SWIFT_EMIT_LOC_STRINGS: YES
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        MACOSX_DEPLOYMENT_TARGET: "13.0"
-        ENABLE_HARDENED_RUNTIME: YES
-    entitlements:
-      path: WNBAGames/WNBAGames.entitlements
-      properties:
-        com.apple.security.app-sandbox: true
-        com.apple.security.network.client: true
-
   WNBAGamesIOS:
     type: application
     platform: iOS
     sources:
-      - path: WNBAGames/Models
+      - path: Shared
         createIntermediateGroups: true
-      - path: WNBAGames/Services
-        createIntermediateGroups: true
-      - path: WNBAGames/ViewModels
-        createIntermediateGroups: true
-      - path: WNBAGames/Extensions
-        createIntermediateGroups: true
-      - path: WNBAGames/Views/GameRowView.swift
-      - path: WNBAGames/Views/EmptyStateView.swift
-      - path: WNBAGames/Views/NetworkBadgeView.swift
       - WNBAGamesIOS
     dependencies:
       - target: WNBAGamesWidget
@@ -77,11 +45,11 @@ targets:
     type: app-extension
     platform: iOS
     sources:
-      - path: WNBAGames/Models
+      - path: Shared/Models
         createIntermediateGroups: true
-      - path: WNBAGames/Services
+      - path: Shared/Services
         createIntermediateGroups: true
-      - path: WNBAGames/Extensions
+      - path: Shared/Extensions
         createIntermediateGroups: true
       - WNBAGamesWidget
     settings:

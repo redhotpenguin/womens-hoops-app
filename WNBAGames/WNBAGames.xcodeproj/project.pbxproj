@@ -7,61 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D385448322E036127AA532B /* LeadersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C560DE195209BE6780270B /* LeadersViewModel.swift */; };
+		1540085F810D774ECD42FD91 /* BroadcastNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D120DB3F947E7899FAC75C /* BroadcastNetwork.swift */; };
 		228B9ECD8334527F1C09C0A1 /* AppShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA932149FF1418CD0F73BF90 /* AppShare.swift */; };
 		2AA77852F6C4F112E4C3C398 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A58E64F8722E1D60EC4B54 /* WidgetKit.framework */; };
 		2C4C9D5B0A77F72F214D33AE /* WNBAGamesWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EDE297A64ADA512CFA9CBF /* WNBAGamesWidgetBundle.swift */; };
-		2F35D2F3C1272E10D6B1C2E2 /* WNBAGamesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2AB47B9BF6AD3C82362CDD /* WNBAGamesApp.swift */; };
+		3293E07716A1D6B0E8636BB0 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29414982F66571DA638992 /* Color+Hex.swift */; };
+		346E2C08C661945D9B2FB719 /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505D89EB5C221244119DAF74 /* Leader.swift */; };
+		409512B24A4F8BD0424A804D /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A29414982F66571DA638992 /* Color+Hex.swift */; };
 		45EA51384037C489EE9CEE2E /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013AB0D3E26EFD710899C8C3 /* StandingsView.swift */; };
+		49357527AF63179561273369 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284D63A38D911734233BF66B /* EmptyStateView.swift */; };
 		4B7BFC8964219FA9A4FB2632 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A6B74AB41CBA72168BAD2C34 /* PrivacyInfo.xcprivacy */; };
-		4E8DC8F48BFA19E37DFF1669 /* ESPNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9B62C7951AFAD874B5348 /* ESPNService.swift */; };
-		5C36433E09AA7C9195F968E9 /* BroadcastNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522E1353C556FE83C6731AD /* BroadcastNetwork.swift */; };
-		5F1BEAF1424868B8A5E23D10 /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F5AA28B2E561FF34C2729E /* Leader.swift */; };
-		5FD1A20BD15B1D43610D528F /* LeadersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07644B997B7F6E06264130F0 /* LeadersViewModel.swift */; };
-		61A92C71611BA42E14EDCC84 /* ESPNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9B62C7951AFAD874B5348 /* ESPNService.swift */; };
+		505DBF0DFD1A31D48F93E7FE /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F758600F4A4452BDB6145F3 /* Standing.swift */; };
+		5847B4CB4304AAE4A5192884 /* ESPNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F65DC56CA4D653600BB1EA /* ESPNService.swift */; };
 		63A66A933AB953516AAA7F74 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B47CA6AE02997DE5FB3C41 /* NotificationManager.swift */; };
-		65297290FE866EC17D70E781 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2CF186C626FBF5AF9DA7C /* Game.swift */; };
+		6A32B08AF2B6CF18576DCA9E /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F758600F4A4452BDB6145F3 /* Standing.swift */; };
 		6AB43583443CB6C0528F997C /* WatchOnlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D1B982153CE298DECF6E1 /* WatchOnlineView.swift */; };
-		6B9A99131F64188364A13E88 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D89B56D1AFB55D7F66DBC2 /* EmptyStateView.swift */; };
-		6C0620D7D34D9382E93E206F /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9626965FBAD46A5578A22E87 /* StandingsViewModel.swift */; };
-		731C17295FC4B26C5AE07AA1 /* ESPNResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BA22E3B37983B08D94B9F /* ESPNResponse.swift */; };
+		716127B76E1EC80F357F69CC /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAA8D96B806A00EB42B07F8 /* Game.swift */; };
+		72F4A66332D1DC4E3686F352 /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505D89EB5C221244119DAF74 /* Leader.swift */; };
 		743594427D8B6DAF25D1D101 /* NextGameWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F872B004210FDDFE4BDDE23F /* NextGameWidget.swift */; };
 		772F1D52FBAD5B6B54F059AD /* WNBAGamesIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C14EC13D86439CC66F82820 /* WNBAGamesIOSApp.swift */; };
 		79A20AD053FD45AE73F701C7 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D734EC55E63CF9F4C3FCF8 /* GameDetailView.swift */; };
-		837D9808977FD199638FA271 /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F5AA28B2E561FF34C2729E /* Leader.swift */; };
+		7CFD00C1649AFCA1431C8D4D /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAA8D96B806A00EB42B07F8 /* Game.swift */; };
 		88B0FE9CC7074FC5AB7B38F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 426516DD5516E61FA174C44B /* Assets.xcassets */; };
-		8AD413088341D19BBE779436 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F160FEA25A0AC16B3EF9B8 /* Standing.swift */; };
-		8D0947FF3C862C89D54B5F26 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9626965FBAD46A5578A22E87 /* StandingsViewModel.swift */; };
-		90DE3AD0E0CDB565327522F4 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF75B2E0141E9829666A665 /* Color+Hex.swift */; };
-		94B6BA1BECA6D21E739E4E97 /* ESPNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9B62C7951AFAD874B5348 /* ESPNService.swift */; };
-		964573026CC47C4E9DE6142F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2CF186C626FBF5AF9DA7C /* Game.swift */; };
-		9C6876625D8DF77611F4BB3E /* ESPNResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BA22E3B37983B08D94B9F /* ESPNResponse.swift */; };
-		9C8160A528804F72461D30D1 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D89B56D1AFB55D7F66DBC2 /* EmptyStateView.swift */; };
-		A1C04762D6884E3EE003033A /* NetworkBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42713DFFEBFCB6D7A58FFA56 /* NetworkBadgeView.swift */; };
 		A8AE6D53A91130C20AD73897 /* LeadersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E5FF47A8821E208B9B520B /* LeadersView.swift */; };
 		ADE37CE47FB23AF301377944 /* WatchNearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99F0FF34D11DADC8B3155BF /* WatchNearbyView.swift */; };
-		B129CECB20887C8BEB871BDE /* NetworkBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42713DFFEBFCB6D7A58FFA56 /* NetworkBadgeView.swift */; };
-		B5ED6BBFAA77ACCD22B599D3 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF2CF186C626FBF5AF9DA7C /* Game.swift */; };
-		B6DE203BB012A7743A930C13 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F160FEA25A0AC16B3EF9B8 /* Standing.swift */; };
+		B6970096754F87457A02EC8D /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6819595E01E1DC6D1769FBA /* GameRowView.swift */; };
 		B8F7402C51D2FC0D06FAABD0 /* TeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB38F93D020C68441075A911 /* TeamDetailView.swift */; };
+		BAC61F03F68D6E8ABF60E3AC /* BroadcastNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D120DB3F947E7899FAC75C /* BroadcastNetwork.swift */; };
+		BC3D7960301BA3B772968FD3 /* ESPNResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FB3F5593CFC2A11EBBB15 /* ESPNResponse.swift */; };
 		BD81CE4C924F6CAA4548DF79 /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3718A432E0B4CA1F553EECBF /* GamesListView.swift */; };
-		BE471DA9AEE46C001FC8D8D8 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E5F20423FD3AA687BB9E8 /* GameRowView.swift */; };
 		C141BF2AE5C9E25B4476B747 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB7C0EFB66DD3625A0F96D9 /* SwiftUI.framework */; };
-		C3C470217784BE2B9C0AD89B /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF75B2E0141E9829666A665 /* Color+Hex.swift */; };
 		C4236B1D2628C30E338064A5 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FA71E0235045B49CF394EC /* CalendarManager.swift */; };
-		C4F8B398EB99AEAFD66F2626 /* GamesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E579A33DEFB3BA0D2C7BB33 /* GamesViewModel.swift */; };
-		C5BA19C981317A9EA677A325 /* MenuBarPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F299B81EF17932EC93B7B2 /* MenuBarPopoverView.swift */; };
-		C5D638D87E5B4487E0E79C8C /* LeadersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07644B997B7F6E06264130F0 /* LeadersViewModel.swift */; };
 		C8818D87713F452D744BDD97 /* FavoriteTeamStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5BAF550ABDEA428505F3D7 /* FavoriteTeamStore.swift */; };
-		C95F09C5934A15629B4FC764 /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3E5F20423FD3AA687BB9E8 /* GameRowView.swift */; };
-		CEF2E60A2A6A6FA3404E88F0 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF75B2E0141E9829666A665 /* Color+Hex.swift */; };
-		D1DFB912159F6D18D2B9390D /* Leader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F5AA28B2E561FF34C2729E /* Leader.swift */; };
-		E11D9C8C1521144333795771 /* BroadcastNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522E1353C556FE83C6731AD /* BroadcastNetwork.swift */; };
+		CA2FF3DD5A6882B35C587E69 /* ESPNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F65DC56CA4D653600BB1EA /* ESPNService.swift */; };
+		CBB26283EAA87F2684C1658E /* GamesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269A7B934FFCDC7C815F3E1 /* GamesViewModel.swift */; };
+		D33247CEF37C79DBDC3457D8 /* StandingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAB06D6F0FC7C479B46CAE4 /* StandingsViewModel.swift */; };
+		D5F69075C77DE47052C87097 /* ESPNResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FB3F5593CFC2A11EBBB15 /* ESPNResponse.swift */; };
 		E1B190C08F4806135388F7E6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED486AB1415DA2C00A7032B6 /* SettingsView.swift */; };
-		E2D94FBF3317B1D76B78AD96 /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F160FEA25A0AC16B3EF9B8 /* Standing.swift */; };
 		E382BBDEAFA381FF5BB67578 /* WNBAGamesWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5FA998CA17EF7E7096697CB0 /* WNBAGamesWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E46E3E23F6A89830131ACE29 /* BroadcastNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3522E1353C556FE83C6731AD /* BroadcastNetwork.swift */; };
-		FB830CFE4A4C595D422C1F5C /* ESPNResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943BA22E3B37983B08D94B9F /* ESPNResponse.swift */; };
-		FD06A3735F86C67F221671F8 /* GamesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E579A33DEFB3BA0D2C7BB33 /* GamesViewModel.swift */; };
+		F668CB3F85E11588582967C2 /* NetworkBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818FF2B087EC7B3BB34CA114 /* NetworkBadgeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,47 +75,42 @@
 
 /* Begin PBXFileReference section */
 		013AB0D3E26EFD710899C8C3 /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
-		07644B997B7F6E06264130F0 /* LeadersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersViewModel.swift; sourceTree = "<group>"; };
-		0A2AB47B9BF6AD3C82362CDD /* WNBAGamesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAGamesApp.swift; sourceTree = "<group>"; };
+		0F758600F4A4452BDB6145F3 /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
+		1A29414982F66571DA638992 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		1C14EC13D86439CC66F82820 /* WNBAGamesIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAGamesIOSApp.swift; sourceTree = "<group>"; };
-		1C3E5F20423FD3AA687BB9E8 /* GameRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRowView.swift; sourceTree = "<group>"; };
-		1E579A33DEFB3BA0D2C7BB33 /* GamesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewModel.swift; sourceTree = "<group>"; };
-		2AF2CF186C626FBF5AF9DA7C /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		3522E1353C556FE83C6731AD /* BroadcastNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastNetwork.swift; sourceTree = "<group>"; };
+		284D63A38D911734233BF66B /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		34D120DB3F947E7899FAC75C /* BroadcastNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastNetwork.swift; sourceTree = "<group>"; };
 		3718A432E0B4CA1F553EECBF /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		3C5BAF550ABDEA428505F3D7 /* FavoriteTeamStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTeamStore.swift; sourceTree = "<group>"; };
 		426516DD5516E61FA174C44B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		42713DFFEBFCB6D7A58FFA56 /* NetworkBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBadgeView.swift; sourceTree = "<group>"; };
 		43C30187E96E3E108250D748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		46D89B56D1AFB55D7F66DBC2 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		47FA71E0235045B49CF394EC /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
-		48F160FEA25A0AC16B3EF9B8 /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
 		4E5D5962EF7E2DBBF90A006F /* WNBAGamesIOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WNBAGamesIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FF75B2E0141E9829666A665 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		505D89EB5C221244119DAF74 /* Leader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leader.swift; sourceTree = "<group>"; };
 		516D1B982153CE298DECF6E1 /* WatchOnlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchOnlineView.swift; sourceTree = "<group>"; };
-		5B7F9C7E3E6884B0AC594C61 /* WNBAGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WNBAGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FA998CA17EF7E7096697CB0 /* WNBAGamesWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = WNBAGamesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		61C560DE195209BE6780270B /* LeadersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersViewModel.swift; sourceTree = "<group>"; };
 		67E5FF47A8821E208B9B520B /* LeadersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersView.swift; sourceTree = "<group>"; };
 		75EDE297A64ADA512CFA9CBF /* WNBAGamesWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAGamesWidgetBundle.swift; sourceTree = "<group>"; };
 		791B49907AE56073BA29C75F /* WNBAGamesIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WNBAGamesIOS.entitlements; sourceTree = "<group>"; };
-		89BA81B90812D139B15A8D19 /* WNBAGames.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WNBAGames.entitlements; sourceTree = "<group>"; };
-		943BA22E3B37983B08D94B9F /* ESPNResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPNResponse.swift; sourceTree = "<group>"; };
-		95F5AA28B2E561FF34C2729E /* Leader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leader.swift; sourceTree = "<group>"; };
-		9626965FBAD46A5578A22E87 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
+		818FF2B087EC7B3BB34CA114 /* NetworkBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBadgeView.swift; sourceTree = "<group>"; };
 		A0A58E64F8722E1D60EC4B54 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		A6819595E01E1DC6D1769FBA /* GameRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRowView.swift; sourceTree = "<group>"; };
 		A6B74AB41CBA72168BAD2C34 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AAB7C0EFB66DD3625A0F96D9 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		B0F299B81EF17932EC93B7B2 /* MenuBarPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPopoverView.swift; sourceTree = "<group>"; };
+		B78FB3F5593CFC2A11EBBB15 /* ESPNResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPNResponse.swift; sourceTree = "<group>"; };
+		C4F65DC56CA4D653600BB1EA /* ESPNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPNService.swift; sourceTree = "<group>"; };
 		C99F0FF34D11DADC8B3155BF /* WatchNearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchNearbyView.swift; sourceTree = "<group>"; };
-		CDA9B62C7951AFAD874B5348 /* ESPNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPNService.swift; sourceTree = "<group>"; };
 		D0B47CA6AE02997DE5FB3C41 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		D8937C11A2F9AA5525AE2E11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DA932149FF1418CD0F73BF90 /* AppShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShare.swift; sourceTree = "<group>"; };
 		DFE2E09F8335D7A13963D977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E269A7B934FFCDC7C815F3E1 /* GamesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewModel.swift; sourceTree = "<group>"; };
 		ED486AB1415DA2C00A7032B6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EFAA8D96B806A00EB42B07F8 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F1D734EC55E63CF9F4C3FCF8 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		F872B004210FDDFE4BDDE23F /* NextGameWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameWidget.swift; sourceTree = "<group>"; };
 		FB38F93D020C68441075A911 /* TeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailView.swift; sourceTree = "<group>"; };
+		FCAB06D6F0FC7C479B46CAE4 /* StandingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,27 +126,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2917C1DD46CCA90A43AB3537 /* Services */ = {
+		0E98E557A3BA0CC9A5C6F7EA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				CDA9B62C7951AFAD874B5348 /* ESPNService.swift */,
+				37859E5F6B624A66976F9EE0 /* Extensions */,
+				980284311E481C5E399A2C8D /* Models */,
+				D9BA54E1480F8907648EA2F4 /* Services */,
+				F1FC368A4EE3A2CA84886A12 /* ViewModels */,
+				4059FB9A3F9E19FAC83F91C8 /* Views */,
 			);
-			path = Services;
+			path = Shared;
 			sourceTree = "<group>";
 		};
-		3FDDADEA7562F70AB41CBB48 /* WNBAGames */ = {
+		37859E5F6B624A66976F9EE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D8937C11A2F9AA5525AE2E11 /* Info.plist */,
-				89BA81B90812D139B15A8D19 /* WNBAGames.entitlements */,
-				0A2AB47B9BF6AD3C82362CDD /* WNBAGamesApp.swift */,
-				E38AE43BB096955F6AE63D8B /* Extensions */,
-				A519CF3448D3CC586333C2AC /* Models */,
-				2917C1DD46CCA90A43AB3537 /* Services */,
-				5BEDD3094F93BD9090920587 /* ViewModels */,
-				6AC9748832F5AE4E19A33285 /* Views */,
+				1A29414982F66571DA638992 /* Color+Hex.swift */,
 			);
-			path = WNBAGames;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4059FB9A3F9E19FAC83F91C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				284D63A38D911734233BF66B /* EmptyStateView.swift */,
+				A6819595E01E1DC6D1769FBA /* GameRowView.swift */,
+				818FF2B087EC7B3BB34CA114 /* NetworkBadgeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		40C282FB1385E0E56C9F15F4 /* WNBAGamesWidget */ = {
@@ -188,31 +175,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5BEDD3094F93BD9090920587 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				1E579A33DEFB3BA0D2C7BB33 /* GamesViewModel.swift */,
-				07644B997B7F6E06264130F0 /* LeadersViewModel.swift */,
-				9626965FBAD46A5578A22E87 /* StandingsViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		6AC9748832F5AE4E19A33285 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				46D89B56D1AFB55D7F66DBC2 /* EmptyStateView.swift */,
-				1C3E5F20423FD3AA687BB9E8 /* GameRowView.swift */,
-				B0F299B81EF17932EC93B7B2 /* MenuBarPopoverView.swift */,
-				42713DFFEBFCB6D7A58FFA56 /* NetworkBadgeView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		6D82E883857C0687BF6A71FA = {
 			isa = PBXGroup;
 			children = (
-				3FDDADEA7562F70AB41CBB48 /* WNBAGames */,
+				0E98E557A3BA0CC9A5C6F7EA /* Shared */,
 				DC909E60EFAB8AE904B11AD2 /* WNBAGamesIOS */,
 				40C282FB1385E0E56C9F15F4 /* WNBAGamesWidget */,
 				418811222A60F70D53EAE857 /* Frameworks */,
@@ -220,22 +186,29 @@
 			);
 			sourceTree = "<group>";
 		};
-		A519CF3448D3CC586333C2AC /* Models */ = {
+		980284311E481C5E399A2C8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				3522E1353C556FE83C6731AD /* BroadcastNetwork.swift */,
-				943BA22E3B37983B08D94B9F /* ESPNResponse.swift */,
-				2AF2CF186C626FBF5AF9DA7C /* Game.swift */,
-				95F5AA28B2E561FF34C2729E /* Leader.swift */,
-				48F160FEA25A0AC16B3EF9B8 /* Standing.swift */,
+				34D120DB3F947E7899FAC75C /* BroadcastNetwork.swift */,
+				B78FB3F5593CFC2A11EBBB15 /* ESPNResponse.swift */,
+				EFAA8D96B806A00EB42B07F8 /* Game.swift */,
+				505D89EB5C221244119DAF74 /* Leader.swift */,
+				0F758600F4A4452BDB6145F3 /* Standing.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D9BA54E1480F8907648EA2F4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C4F65DC56CA4D653600BB1EA /* ESPNService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		DB74DF7309A10E31E2E77833 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B7F9C7E3E6884B0AC594C61 /* WNBAGames.app */,
 				4E5D5962EF7E2DBBF90A006F /* WNBAGamesIOS.app */,
 				5FA998CA17EF7E7096697CB0 /* WNBAGamesWidget.appex */,
 			);
@@ -266,12 +239,14 @@
 			path = WNBAGamesIOS;
 			sourceTree = "<group>";
 		};
-		E38AE43BB096955F6AE63D8B /* Extensions */ = {
+		F1FC368A4EE3A2CA84886A12 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				4FF75B2E0141E9829666A665 /* Color+Hex.swift */,
+				E269A7B934FFCDC7C815F3E1 /* GamesViewModel.swift */,
+				61C560DE195209BE6780270B /* LeadersViewModel.swift */,
+				FCAB06D6F0FC7C479B46CAE4 /* StandingsViewModel.swift */,
 			);
-			path = Extensions;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,23 +290,6 @@
 			productReference = 5FA998CA17EF7E7096697CB0 /* WNBAGamesWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		2CA2C9CCB1C2BE79F1A0DDF2 /* WNBAGames */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EA136CA9E2C49721D9FA73EE /* Build configuration list for PBXNativeTarget "WNBAGames" */;
-			buildPhases = (
-				3EB7F306F024274630CFA472 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = WNBAGames;
-			packageProductDependencies = (
-			);
-			productName = WNBAGames;
-			productReference = 5B7F9C7E3E6884B0AC594C61 /* WNBAGames.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -346,10 +304,6 @@
 					};
 					0C0F7C4A393AE601DCFA4D0E = {
 						DevelopmentTeam = 3AJVPVCRK8;
-					};
-					2CA2C9CCB1C2BE79F1A0DDF2 = {
-						DevelopmentTeam = 3AJVPVCRK8;
-						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -367,7 +321,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2CA2C9CCB1C2BE79F1A0DDF2 /* WNBAGames */,
 				09C9EA52F3C50E020653A572 /* WNBAGamesIOS */,
 				0C0F7C4A393AE601DCFA4D0E /* WNBAGamesWidget */,
 			);
@@ -392,27 +345,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				228B9ECD8334527F1C09C0A1 /* AppShare.swift in Sources */,
-				E11D9C8C1521144333795771 /* BroadcastNetwork.swift in Sources */,
+				BAC61F03F68D6E8ABF60E3AC /* BroadcastNetwork.swift in Sources */,
 				C4236B1D2628C30E338064A5 /* CalendarManager.swift in Sources */,
-				CEF2E60A2A6A6FA3404E88F0 /* Color+Hex.swift in Sources */,
-				731C17295FC4B26C5AE07AA1 /* ESPNResponse.swift in Sources */,
-				4E8DC8F48BFA19E37DFF1669 /* ESPNService.swift in Sources */,
-				6B9A99131F64188364A13E88 /* EmptyStateView.swift in Sources */,
+				3293E07716A1D6B0E8636BB0 /* Color+Hex.swift in Sources */,
+				D5F69075C77DE47052C87097 /* ESPNResponse.swift in Sources */,
+				CA2FF3DD5A6882B35C587E69 /* ESPNService.swift in Sources */,
+				49357527AF63179561273369 /* EmptyStateView.swift in Sources */,
 				C8818D87713F452D744BDD97 /* FavoriteTeamStore.swift in Sources */,
-				964573026CC47C4E9DE6142F /* Game.swift in Sources */,
+				7CFD00C1649AFCA1431C8D4D /* Game.swift in Sources */,
 				79A20AD053FD45AE73F701C7 /* GameDetailView.swift in Sources */,
-				BE471DA9AEE46C001FC8D8D8 /* GameRowView.swift in Sources */,
+				B6970096754F87457A02EC8D /* GameRowView.swift in Sources */,
 				BD81CE4C924F6CAA4548DF79 /* GamesListView.swift in Sources */,
-				FD06A3735F86C67F221671F8 /* GamesViewModel.swift in Sources */,
-				5F1BEAF1424868B8A5E23D10 /* Leader.swift in Sources */,
+				CBB26283EAA87F2684C1658E /* GamesViewModel.swift in Sources */,
+				346E2C08C661945D9B2FB719 /* Leader.swift in Sources */,
 				A8AE6D53A91130C20AD73897 /* LeadersView.swift in Sources */,
-				5FD1A20BD15B1D43610D528F /* LeadersViewModel.swift in Sources */,
-				A1C04762D6884E3EE003033A /* NetworkBadgeView.swift in Sources */,
+				0D385448322E036127AA532B /* LeadersViewModel.swift in Sources */,
+				F668CB3F85E11588582967C2 /* NetworkBadgeView.swift in Sources */,
 				63A66A933AB953516AAA7F74 /* NotificationManager.swift in Sources */,
 				E1B190C08F4806135388F7E6 /* SettingsView.swift in Sources */,
-				8AD413088341D19BBE779436 /* Standing.swift in Sources */,
+				505DBF0DFD1A31D48F93E7FE /* Standing.swift in Sources */,
 				45EA51384037C489EE9CEE2E /* StandingsView.swift in Sources */,
-				8D0947FF3C862C89D54B5F26 /* StandingsViewModel.swift in Sources */,
+				D33247CEF37C79DBDC3457D8 /* StandingsViewModel.swift in Sources */,
 				B8F7402C51D2FC0D06FAABD0 /* TeamDetailView.swift in Sources */,
 				772F1D52FBAD5B6B54F059AD /* WNBAGamesIOSApp.swift in Sources */,
 				ADE37CE47FB23AF301377944 /* WatchNearbyView.swift in Sources */,
@@ -420,40 +373,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3EB7F306F024274630CFA472 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E46E3E23F6A89830131ACE29 /* BroadcastNetwork.swift in Sources */,
-				C3C470217784BE2B9C0AD89B /* Color+Hex.swift in Sources */,
-				FB830CFE4A4C595D422C1F5C /* ESPNResponse.swift in Sources */,
-				61A92C71611BA42E14EDCC84 /* ESPNService.swift in Sources */,
-				9C8160A528804F72461D30D1 /* EmptyStateView.swift in Sources */,
-				B5ED6BBFAA77ACCD22B599D3 /* Game.swift in Sources */,
-				C95F09C5934A15629B4FC764 /* GameRowView.swift in Sources */,
-				C4F8B398EB99AEAFD66F2626 /* GamesViewModel.swift in Sources */,
-				837D9808977FD199638FA271 /* Leader.swift in Sources */,
-				C5D638D87E5B4487E0E79C8C /* LeadersViewModel.swift in Sources */,
-				C5BA19C981317A9EA677A325 /* MenuBarPopoverView.swift in Sources */,
-				B129CECB20887C8BEB871BDE /* NetworkBadgeView.swift in Sources */,
-				E2D94FBF3317B1D76B78AD96 /* Standing.swift in Sources */,
-				6C0620D7D34D9382E93E206F /* StandingsViewModel.swift in Sources */,
-				2F35D2F3C1272E10D6B1C2E2 /* WNBAGamesApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EFA9049B91D3F5CD804D7096 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C36433E09AA7C9195F968E9 /* BroadcastNetwork.swift in Sources */,
-				90DE3AD0E0CDB565327522F4 /* Color+Hex.swift in Sources */,
-				9C6876625D8DF77611F4BB3E /* ESPNResponse.swift in Sources */,
-				94B6BA1BECA6D21E739E4E97 /* ESPNService.swift in Sources */,
-				65297290FE866EC17D70E781 /* Game.swift in Sources */,
-				D1DFB912159F6D18D2B9390D /* Leader.swift in Sources */,
+				1540085F810D774ECD42FD91 /* BroadcastNetwork.swift in Sources */,
+				409512B24A4F8BD0424A804D /* Color+Hex.swift in Sources */,
+				BC3D7960301BA3B772968FD3 /* ESPNResponse.swift in Sources */,
+				5847B4CB4304AAE4A5192884 /* ESPNService.swift in Sources */,
+				716127B76E1EC80F357F69CC /* Game.swift in Sources */,
+				72F4A66332D1DC4E3686F352 /* Leader.swift in Sources */,
 				743594427D8B6DAF25D1D101 /* NextGameWidget.swift in Sources */,
-				B6DE203BB012A7743A930C13 /* Standing.swift in Sources */,
+				6A32B08AF2B6CF18576DCA9E /* Standing.swift in Sources */,
 				2C4C9D5B0A77F72F214D33AE /* WNBAGamesWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,10 +448,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.9;
@@ -581,40 +512,6 @@
 			};
 			name = Debug;
 		};
-		A6286B5A731AE88B3BC6AAB5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WNBAGames/WNBAGames.entitlements;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = WNBAGames/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phred.WNBAGames;
-				PRODUCT_NAME = WNBAGames;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Debug;
-		};
-		B70EBD3D37328DB53690647C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = WNBAGames/WNBAGames.entitlements;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = WNBAGames/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.phred.WNBAGames;
-				PRODUCT_NAME = WNBAGames;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-			};
-			name = Release;
-		};
 		B8BA20983D5C28D65880CD3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -669,11 +566,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.9;
@@ -706,15 +603,6 @@
 			buildConfigurations = (
 				FAF1F51009992E609DB17DC4 /* Debug */,
 				2BA14CBEB1E4F01E667AF578 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		EA136CA9E2C49721D9FA73EE /* Build configuration list for PBXNativeTarget "WNBAGames" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A6286B5A731AE88B3BC6AAB5 /* Debug */,
-				B70EBD3D37328DB53690647C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

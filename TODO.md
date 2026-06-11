@@ -48,7 +48,7 @@ This file tracks what's left.
 - A clear "here's what we added" reply tends to land better than a silent resubmission.
 
 ### S6. Fix App Store Support URL (Guideline 1.5 — Safety)
-App Review rejected the Support URL `https://github.com/redhotpenguin/wnba_menubar_app/issues` because it doesn't direct users to a webpage they can use to ask questions and get support. Need a real support page.
+App Review rejected the Support URL `https://github.com/redhotpenguin/wnba_games_app_ios/issues` because it doesn't direct users to a webpage they can use to ask questions and get support. Need a real support page.
 
 **Recommended host: Vercel** (free Hobby tier, custom domain support, one-file deploy). Steps:
 1. Create a single static HTML page at the repo root (e.g. `support/index.html`) with:
@@ -61,7 +61,7 @@ App Review rejected the Support URL `https://github.com/redhotpenguin/wnba_menub
 4. Update App Store Connect → App Information → **Support URL** to the new URL. Verify it resolves in an incognito window before resubmitting.
 
 **Alternatives if Vercel isn't preferred:**
-- **GitHub Pages** — free, URL would be `https://redhotpenguin.github.io/wnba_menubar_app/`. Works for App Review but less branded.
+- **GitHub Pages** — free, URL would be `https://redhotpenguin.github.io/wnba_games_app_ios/`. Works for App Review but less branded.
 - **Carrd.co free tier** — single-page sites with their branding subdomain.
 - **Notion public page** — looks ok but loads slowly on cold cache.
 - **Zendesk free plan** — no longer exists; their free plan was discontinued. Not an option without paying.
