@@ -24,9 +24,9 @@ struct SettingsView: View {
                         Text(versionString)
                             .foregroundStyle(.secondary)
                     }
-                    Link(destination: URL(string: "https://LakesWnbaGames.com")!) {
+                    Link(destination: URL(string: "https://redhotpenguin.github.io/wnba_games_app_ios/")!) {
                         HStack {
-                            Text("LakesWnbaGames.com")
+                            Text("Support")
                             Spacer()
                             Image(systemName: "arrow.up.forward.square")
                                 .foregroundStyle(.secondary)
