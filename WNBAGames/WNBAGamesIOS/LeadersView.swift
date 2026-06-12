@@ -19,7 +19,10 @@ struct LeadersView: View {
     @ViewBuilder
     private var content: some View {
         switch viewModel.loadingState {
-        case .idle, .loading where viewModel.categories.isEmpty:
+        case .idle:
+            ProgressView("Loading leaders…")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        case .loading where viewModel.categories.isEmpty:
             ProgressView("Loading leaders…")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .error(let message):

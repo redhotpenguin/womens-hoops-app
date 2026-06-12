@@ -22,7 +22,10 @@ struct StandingsView: View {
     @ViewBuilder
     private var content: some View {
         switch viewModel.loadingState {
-        case .idle, .loading where viewModel.conferences.isEmpty:
+        case .idle:
+            ProgressView("Loading standings…")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        case .loading where viewModel.conferences.isEmpty:
             ProgressView("Loading standings…")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .error(let message):
