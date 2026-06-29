@@ -38,8 +38,8 @@ struct NextGameWidget: Widget {
                     .padding()
             }
         }
-        .configurationDisplayName("Next WNBA Game")
-        .description("Shows the next upcoming WNBA matchup.")
+        .configurationDisplayName("Next Game")
+        .description("Shows the next upcoming women's pro basketball matchup.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -92,7 +92,7 @@ struct NextGameEntryView: View {
     private func medium(_ game: Game) -> some View {
         HStack(alignment: .top, spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text("NEXT WNBA GAME")
+                Text("NEXT GAME")
                     .font(.caption2.weight(.bold))
                     .foregroundStyle(.secondary)
                 HStack(spacing: 10) {

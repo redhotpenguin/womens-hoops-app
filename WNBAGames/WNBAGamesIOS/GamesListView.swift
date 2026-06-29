@@ -28,7 +28,7 @@ struct GamesListView: View {
     var body: some View {
         NavigationStack(path: $path) {
             content
-                .navigationTitle("WNBA Games")
+                .navigationTitle("Women's Hoops")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         if viewModel.loadingState == .loading {
@@ -38,7 +38,7 @@ struct GamesListView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         ShareLink(
                             item: AppShare.url,
-                            subject: Text("WNBA Games"),
+                            subject: Text("Women's Hoops"),
                             message: Text(AppShare.message)
                         ) {
                             Image(systemName: "square.and.arrow.up")

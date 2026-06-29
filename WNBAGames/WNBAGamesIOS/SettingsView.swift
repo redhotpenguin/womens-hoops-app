@@ -24,7 +24,7 @@ struct SettingsView: View {
                         Text(versionString)
                             .foregroundStyle(.secondary)
                     }
-                    Link(destination: URL(string: "https://redhotpenguin.github.io/wnba_games_app_ios/")!) {
+                    Link(destination: URL(string: "https://redhotpenguin.github.io/womens-hoops-app/")!) {
                         HStack {
                             Text("Support")
                             Spacer()
@@ -34,10 +34,10 @@ struct SettingsView: View {
                     }
                     ShareLink(
                         item: AppShare.url,
-                        subject: Text("WNBA Games"),
+                        subject: Text("Women's Hoops"),
                         message: Text(AppShare.message)
                     ) {
-                        Label("Share WNBA Games", systemImage: "square.and.arrow.up")
+                        Label("Share Women's Hoops", systemImage: "square.and.arrow.up")
                     }
                 }
 
@@ -58,7 +58,7 @@ struct SettingsView: View {
                 }
 
                 Section("Data") {
-                    Text("Scores, schedule, and broadcast information are provided by ESPN's public WNBA API.")
+                    Text("Scores, schedule, and broadcast information are provided by ESPN's public sports API.")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }
@@ -70,7 +70,7 @@ struct SettingsView: View {
                 }
 
                 Section("Trademarks") {
-                    Text("WNBA is a trademark of the Women's National Basketball Association, LLC. Team names and logos are trademarks of their respective owners. This app is not affiliated with, endorsed by, or sponsored by the WNBA or any team.")
+                    Text("Team names and logos are trademarks of their respective owners. This app is an independent product and is not affiliated with, endorsed by, or sponsored by any professional basketball league or its teams.")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }

@@ -75,3 +75,28 @@ targets:
     dependencies:
       - sdk: WidgetKit.framework
       - sdk: SwiftUI.framework
+
+  WNBAGamesUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - WNBAGamesUITests
+    dependencies:
+      - target: WNBAGamesIOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.phred.WNBAGamesIOSUITests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: WNBAGamesIOS
+        CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "Apple Development"
+
+schemes:
+  WNBAGamesIOS:
+    build:
+      targets:
+        WNBAGamesIOS: all
+        WNBAGamesUITests: [test]
+    test:
+      targets:
+        - WNBAGamesUITests

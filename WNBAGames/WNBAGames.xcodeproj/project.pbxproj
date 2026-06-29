@@ -30,6 +30,7 @@
 		79A20AD053FD45AE73F701C7 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D734EC55E63CF9F4C3FCF8 /* GameDetailView.swift */; };
 		7CFD00C1649AFCA1431C8D4D /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAA8D96B806A00EB42B07F8 /* Game.swift */; };
 		88B0FE9CC7074FC5AB7B38F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 426516DD5516E61FA174C44B /* Assets.xcassets */; };
+		94E2AA5BF958AACA7A9A34A4 /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751780126BD876A06195B23D /* ScreenshotTests.swift */; };
 		A8AE6D53A91130C20AD73897 /* LeadersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E5FF47A8821E208B9B520B /* LeadersView.swift */; };
 		ADE37CE47FB23AF301377944 /* WatchNearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99F0FF34D11DADC8B3155BF /* WatchNearbyView.swift */; };
 		B6970096754F87457A02EC8D /* GameRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6819595E01E1DC6D1769FBA /* GameRowView.swift */; };
@@ -50,6 +51,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		05D0457A210C070A7EF94E11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 39B8878901346563C7BAE701 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09C9EA52F3C50E020653A572;
+			remoteInfo = WNBAGamesIOS;
+		};
 		FA357076E3CFF317A6517A23 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 39B8878901346563C7BAE701 /* Project object */;
@@ -91,6 +99,7 @@
 		5FA998CA17EF7E7096697CB0 /* WNBAGamesWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = WNBAGamesWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		61C560DE195209BE6780270B /* LeadersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersViewModel.swift; sourceTree = "<group>"; };
 		67E5FF47A8821E208B9B520B /* LeadersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersView.swift; sourceTree = "<group>"; };
+		751780126BD876A06195B23D /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
 		75EDE297A64ADA512CFA9CBF /* WNBAGamesWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WNBAGamesWidgetBundle.swift; sourceTree = "<group>"; };
 		791B49907AE56073BA29C75F /* WNBAGamesIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WNBAGamesIOS.entitlements; sourceTree = "<group>"; };
 		818FF2B087EC7B3BB34CA114 /* NetworkBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBadgeView.swift; sourceTree = "<group>"; };
@@ -101,6 +110,7 @@
 		B78FB3F5593CFC2A11EBBB15 /* ESPNResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPNResponse.swift; sourceTree = "<group>"; };
 		C4F65DC56CA4D653600BB1EA /* ESPNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ESPNService.swift; sourceTree = "<group>"; };
 		C99F0FF34D11DADC8B3155BF /* WatchNearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchNearbyView.swift; sourceTree = "<group>"; };
+		D0A543795D4F3EF6B933E833 /* WNBAGamesUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WNBAGamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0B47CA6AE02997DE5FB3C41 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		DA932149FF1418CD0F73BF90 /* AppShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShare.swift; sourceTree = "<group>"; };
 		DFE2E09F8335D7A13963D977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -180,6 +190,7 @@
 			children = (
 				0E98E557A3BA0CC9A5C6F7EA /* Shared */,
 				DC909E60EFAB8AE904B11AD2 /* WNBAGamesIOS */,
+				E3A81464FEC6FDD9B71B1B7E /* WNBAGamesUITests */,
 				40C282FB1385E0E56C9F15F4 /* WNBAGamesWidget */,
 				418811222A60F70D53EAE857 /* Frameworks */,
 				DB74DF7309A10E31E2E77833 /* Products */,
@@ -210,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				4E5D5962EF7E2DBBF90A006F /* WNBAGamesIOS.app */,
+				D0A543795D4F3EF6B933E833 /* WNBAGamesUITests.xctest */,
 				5FA998CA17EF7E7096697CB0 /* WNBAGamesWidget.appex */,
 			);
 			name = Products;
@@ -237,6 +249,14 @@
 				1C14EC13D86439CC66F82820 /* WNBAGamesIOSApp.swift */,
 			);
 			path = WNBAGamesIOS;
+			sourceTree = "<group>";
+		};
+		E3A81464FEC6FDD9B71B1B7E /* WNBAGamesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				751780126BD876A06195B23D /* ScreenshotTests.swift */,
+			);
+			path = WNBAGamesUITests;
 			sourceTree = "<group>";
 		};
 		F1FC368A4EE3A2CA84886A12 /* ViewModels */ = {
@@ -290,6 +310,24 @@
 			productReference = 5FA998CA17EF7E7096697CB0 /* WNBAGamesWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		796BADCE9E89D11103F962FC /* WNBAGamesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0047F07CEB61459C2ED05BD0 /* Build configuration list for PBXNativeTarget "WNBAGamesUITests" */;
+			buildPhases = (
+				EEC91831C3206D3212AF1D6B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA01B13716A2ADB1B9FC139D /* PBXTargetDependency */,
+			);
+			name = WNBAGamesUITests;
+			packageProductDependencies = (
+			);
+			productName = WNBAGamesUITests;
+			productReference = D0A543795D4F3EF6B933E833 /* WNBAGamesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -304,6 +342,11 @@
 					};
 					0C0F7C4A393AE601DCFA4D0E = {
 						DevelopmentTeam = 3AJVPVCRK8;
+					};
+					796BADCE9E89D11103F962FC = {
+						DevelopmentTeam = 3AJVPVCRK8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 09C9EA52F3C50E020653A572;
 					};
 				};
 			};
@@ -322,6 +365,7 @@
 			projectRoot = "";
 			targets = (
 				09C9EA52F3C50E020653A572 /* WNBAGamesIOS */,
+				796BADCE9E89D11103F962FC /* WNBAGamesUITests */,
 				0C0F7C4A393AE601DCFA4D0E /* WNBAGamesWidget */,
 			);
 		};
@@ -373,6 +417,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEC91831C3206D3212AF1D6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94E2AA5BF958AACA7A9A34A4 /* ScreenshotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EFA9049B91D3F5CD804D7096 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -392,6 +444,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA01B13716A2ADB1B9FC139D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09C9EA52F3C50E020653A572 /* WNBAGamesIOS */;
+			targetProxy = 05D0457A210C070A7EF94E11 /* PBXContainerItemProxy */;
+		};
 		B8BFF2B60395333BB57F21D5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 0C0F7C4A393AE601DCFA4D0E /* WNBAGamesWidget */;
@@ -400,6 +457,25 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0C1B0DEDBE7804F05E6FB731 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phred.WNBAGamesIOSUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WNBAGamesIOS;
+			};
+			name = Release;
+		};
 		19FDE2D6750597FBF6118E06 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -577,6 +653,25 @@
 			};
 			name = Debug;
 		};
+		D4A1DF4588022C948B951AA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.phred.WNBAGamesIOSUITests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WNBAGamesIOS;
+			};
+			name = Debug;
+		};
 		FAF1F51009992E609DB17DC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -598,6 +693,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0047F07CEB61459C2ED05BD0 /* Build configuration list for PBXNativeTarget "WNBAGamesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4A1DF4588022C948B951AA6 /* Debug */,
+				0C1B0DEDBE7804F05E6FB731 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		C76A8493A3CD167AA046DBF7 /* Build configuration list for PBXNativeTarget "WNBAGamesWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -29,7 +29,7 @@ struct WatchNearbyView: View {
                 EmptyMessage(
                     icon: "location.slash",
                     title: "Location Access Off",
-                    message: "Enable location for WNBA Games in Settings to find nearby sports bars.",
+                    message: "Enable location for Women's Hoops in Settings to find nearby sports bars.",
                     actionTitle: "Open Settings",
                     action: {
                         if let url = URL(string: UIApplication.openSettingsURLString) {

@@ -1,10 +1,10 @@
 # Privacy Policy
 
-**WNBA Games** — last updated June 2026
+**Women's Hoops** — last updated June 2026
 
 ## Summary
 
-WNBA Games does not collect, store, or share any personal data.
+Women's Hoops does not collect, store, or share any personal data.
 
 ## Data collected
 
@@ -12,7 +12,7 @@ None. The app does not collect any information about you.
 
 ## Network requests
 
-The app fetches publicly available WNBA schedule data from ESPN's public scoreboard API (`site.api.espn.com`). No user data is sent with these requests. No account or login is required.
+The app fetches publicly available women's professional basketball schedule data from ESPN's public scoreboard API (`site.api.espn.com`). No user data is sent with these requests. No account or login is required.
 
 When you tap a broadcast network badge or team name, your device opens that URL in your default browser. The app does not track which links you open.
 
@@ -22,4 +22,4 @@ The app has no analytics, no advertising SDKs, no crash-reporting services, and 
 
 ## Contact
 
-Questions? Open an issue at https://github.com/redhotpenguin/wnba_games_app_ios/issues
+Questions? Open an issue at https://github.com/redhotpenguin/womens-hoops-app/issues
