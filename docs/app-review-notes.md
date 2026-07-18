@@ -45,9 +45,14 @@ Please let us know if any further changes are needed. Thank you.
   shorter "Women's Hoops").
 - **Support URL:** the deployed support page (docs/index.html) — confirm it
   resolves in a private/incognito window.
-- **Subtitle / keywords / description:** confirm no league or team trademarks
-  remain in the public metadata fields.
-- **Screenshots:** the committed 6.9" iPhone and 13" iPad sets under
-  `screenshots/` show the in-app "Women's Hoops" title.
+- **Subtitle** (30 char max, no trademarks): `Scores, standings & schedule`
+  (alternatives: `Schedule, scores & standings` · `Schedule & where to watch`).
+- **Keywords** (100 char field, comma-separated, hidden from users, no
+  trademarks): `basketball,women,scores,standings,schedule,leaders,live,games,tip-off,sports`
+- **Description:** confirm no league or team trademarks remain in the public
+  metadata fields.
+- **Screenshots:** committed under `screenshots/` — 6.9" iPhone
+  (`iphone-6.9/`, 1320×2868), 6.5" iPhone (`iphone-6.5/`, 1242×2688), and 13"
+  iPad (`ipad-13/`). All show the in-app "Women's Hoops" title.
 - **Encryption:** `ITSAppUsesNonExemptEncryption = false` is set in Info.plist,
   so the export-compliance question is answered automatically.
