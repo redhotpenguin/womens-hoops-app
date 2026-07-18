@@ -1,4 +1,4 @@
-# Women's Hoops
+# Women's Hoops Tracker
 
 A women's pro basketball companion app for iPhone — schedule, standings, league leaders, and where to watch.
 

@@ -1,10 +1,10 @@
 # Privacy Policy
 
-**Women's Hoops** — last updated June 2026
+**Women's Hoops Tracker** — last updated June 2026
 
 ## Summary
 
-Women's Hoops does not collect, store, or share any personal data.
+Women's Hoops Tracker does not collect, store, or share any personal data.
 
 ## Data collected
 
