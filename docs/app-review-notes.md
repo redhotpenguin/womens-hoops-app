@@ -49,6 +49,8 @@ Please let us know if any further changes are needed. Thank you.
   (alternatives: `Schedule, scores & standings` · `Schedule & where to watch`).
 - **Keywords** (100 char field, comma-separated, hidden from users, no
   trademarks): `basketball,women,scores,standings,schedule,leaders,live,games,tip-off,sports`
+- **Promotional text** (170 char max, editable without a new build):
+  `Track every women's pro basketball game on your iPhone. New: live scores, standings, league leaders, calendar reminders, and a Watch Nearby sports-bar finder.`
 - **Description:** confirm no league or team trademarks remain in the public
   metadata fields.
 - **Screenshots:** committed under `screenshots/` — 6.9" iPhone
